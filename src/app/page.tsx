@@ -16,7 +16,7 @@ interface Project {
   shortDesc: string;
   fullDesc: string;
   highlights: string[];
-  link: string;
+  link?: string;
 }
 
 interface Experience {
@@ -76,6 +76,7 @@ const content = {
     thesisF4Desc: "Engineered modular converters transforming uncalibrated Machine Learning (One-vs-Rest) scores into reliable evidence.",
 
     volunteeringTitle: "Community & Impact",
+    volunteeringSub: "Social responsibility and leadership through volunteering.",
     volunteering: [
       { org: "Best Buddies International", role: "School Program Coordinator & Captain", period: "2016 – 2018", desc: "Led a team of 50 volunteers as Turkey chapter captain. Advocated for people with autism and Down syndrome.", tag: "Social Inclusion" },
       { org: "Istanbul Youth Platform", role: "Volunteer & Small Hands Big Dreams", period: "2017 – 2018", desc: "Expanded the vision of students from socio-economically disadvantaged neighborhoods through workshops and mentoring.", tag: "Youth Leadership" },
@@ -239,6 +240,7 @@ const content = {
     thesisF4Desc: "Entwicklung modularer Konverter, die unkalibrierte Machine-Learning-Scores in verlässliche Evidenz umwandeln.",
 
     volunteeringTitle: "Gemeinschaft & Engagement",
+    volunteeringSub: "Soziale Verantwortung und Führung durch ehrenamtliches Engagement.",
     volunteering: [
       { org: "Best Buddies International", role: "Schulprogramm-Koordinatorin & Kapitänin", period: "2016 – 2018", desc: "Leitete ein Team von 50 Freiwilligen. Eingesetzt für Menschen mit Autismus und Down-Syndrom.", tag: "Soziale Inklusion" },
       { org: "Istanbuler Jugendplattform", role: "Freiwillige", period: "2017 – 2018", desc: "Horizont von Schülern aus sozioökonomisch benachteiligten Stadtteilen erweitert.", tag: "Jugendführung" },
