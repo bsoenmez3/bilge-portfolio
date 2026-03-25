@@ -2,14 +2,13 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion';
-import { 
-  Linkedin, Github, Rocket, ChevronDown, Binary, Mail, 
-  CheckCircle2, ExternalLink, Monitor, Shield, Zap, 
-  Sword, BookOpen, Layers, X, Plane, Leaf, Heart, 
+import {
+  Linkedin, Github, Rocket, ChevronDown, Binary, Mail,
+  CheckCircle2, ExternalLink, Monitor, Shield, Zap,
+  Sword, BookOpen, Layers, X, Plane, Leaf, Heart,
   Music, Camera, Youtube, Circle, Database, Network
 } from 'lucide-react';
 
-// --- TYPES ---
 interface Project {
   id: string;
   title: string;
@@ -28,7 +27,6 @@ interface Experience {
   tasks: string[];
 }
 
-// --- DATA CONFIGURATION ---
 const content = {
   en: {
     name: "Bilge Sönmez",
@@ -43,10 +41,10 @@ const content = {
     viewDetails: "View Details",
     viewRepo: "View Repository",
     highlightsTitle: "Key Engineering Highlights",
-    
+
     kitName: "Karlsruhe Institute of Technology (KIT)",
     kabatasName: "Kabataş Erkek High School",
-    
+
     klausurHighlight: "Project Highlight",
     kaDesc: "An enterprise-grade examination management system built at KIT. Focused on bridging the gap between digital question management and physical exam production through automated LaTeX workflows.",
     kaF1Title: "Automated LaTeX",
@@ -65,7 +63,6 @@ const content = {
     kaGalleryTitle: "System Interfaces",
     kaGalleryHint: "Hover to expand gallery",
 
-    // --- THESIS ARCHITECTURE SECTION ---
     thesisSectionHighlight: "Bachelor's Thesis",
     thesisSectionTitle: "Autonomous Systems Hybrid Fusion Framework",
     thesisSectionDesc: "A novel hybrid fusion framework integrating probabilistic Vehicle-to-Infrastructure (V2I) data with evidential on-board sensors. Built to safely resolve conflict and quantify epistemic uncertainty in autonomous perception using Dempster-Shafer Theory.",
@@ -96,7 +93,7 @@ const content = {
       { icon: <Camera size={20} />, name: "Photography", desc: "Framing the world through a different lens." },
       { icon: <Youtube size={20} />, name: "Educational YouTube", desc: "Creating videos that make learning accessible." },
     ],
-    
+
     kitDesc: "Focused on Autonomous Systems, Safety, and Software Engineering.",
     kitExtras: "Supplementary subjects in Business Administration (BWL): Management and Marketing, Consumer Behavior, Finance and Accounting.",
     kabatasDesc: "Graduated top 0.03% nationally. Developed foundation in leadership and analytical thinking.",
@@ -107,90 +104,90 @@ const content = {
       { name: "English", level: "B2 - C1 Proficiency", info: "Global tech standard.", color: "from-blue-500 to-indigo-600", dots: 4 },
       { name: "Spanish", level: "Elementary", info: "Learning to sing in Spanish :)", color: "from-emerald-400 to-teal-500", dots: 1 }
     ],
-    
+
     experiences: [
-      { 
-        company: "Fraunhofer IOSB", 
-        role: "Student Assistant", 
-        period: "Jan 2026 – Present", 
+      {
+        company: "Fraunhofer IOSB",
+        role: "Student Assistant",
+        period: "Jan 2026 – Present",
         tech: "Python · Django · Docker · REST APIs",
         tasks: [
-          "Backend development for a Deep Learning tool", 
-          "Video-Based Safety and Assistance Systems", 
+          "Backend development for a Deep Learning tool",
+          "Video-Based Safety and Assistance Systems",
           "Data processing and RESTful API architecture"
-        ] 
+        ]
       },
-      { 
-        company: "1&1 Mail & Media", 
-        role: "Working Student", 
-        period: "Jul 2022 – Sep 2025", 
+      {
+        company: "1&1 Mail & Media",
+        role: "Working Student",
+        period: "Jul 2022 – Sep 2025",
         tech: "Java · SonarQube · CI/CD · Jira · Automation",
         tasks: [
-          "Collaborated with senior engineers & testers in Agile teams (Daily Stand-ups, Retrospectives)", 
-          "Implemented security requirements and resolved SonarQube code quality issues", 
+          "Collaborated with senior engineers & testers in Agile teams (Daily Stand-ups, Retrospectives)",
+          "Implemented security requirements and resolved SonarQube code quality issues",
           "Managed CI/CD pipeline adjustments, endpoint migrations, and automated test coverage"
-        ] 
+        ]
       },
-      { 
-        company: "TECO Research Group · KIT", 
-        role: "Software Developer Intern", 
-        period: "May 2023 – Sep 2023", 
+      {
+        company: "TECO Research Group · KIT",
+        role: "Software Developer Intern",
+        period: "May 2023 – Sep 2023",
         tech: "Java · TypeScript · Python · LaTeX",
         tasks: [
-          "Developed 'KlausurAutomator' to automate and simplify digital exam creation", 
-          "Collaborated in a team of 5 to streamline teacher workloads and increase productivity", 
+          "Developed 'KlausurAutomator' to automate and simplify digital exam creation",
+          "Collaborated in a team of 5 to streamline teacher workloads and increase productivity",
           "Full-stack development and LaTeX workflow automation"
-        ] 
+        ]
       }
     ],
     projects: [
-      { 
-        id: "runa", title: "Monster Hunter: Runa’s Strive", tech: "Java / OOP / CLI", 
+      {
+        id: "runa", title: "Monster Hunter: Runa’s Strive", tech: "Java / OOP / CLI",
         shortDesc: "A strategic turn-based RPG with complex deck management and class-based combat.",
         fullDesc: "Developed as an intensive 1-week project, this turn-based RPG delivers a highly strategic gameplay experience through a clean CLI.",
         highlights: ["Class Diversity: Warrior, Mage, or Paladin decks.", "Strategic Heal: Discard cards to recover health.", "Modular Design: Clean separation of game logic and UI."],
-        link: "https://github.com/bsoenmez3/RunasStriveRPG" 
+        link: "https://github.com/bsoenmez3/RunasStriveRPG"
       },
-      { 
-        id: "scholar", title: "Scholar Management System", tech: "Java / Clean Code", 
+      {
+        id: "scholar", title: "Scholar Management System", tech: "Java / Clean Code",
         shortDesc: "Advanced academic system utilizing Inheritance, Polymorphism, and SRP.",
         fullDesc: "A robust OOP management tool that calculates researcher g-index, analyzes article similarity via Jaccard index, and formats bibliographies (APA/ACM).",
         highlights: ["Deep Inheritance: Structured hierarchy for Publications and Venues.", "Single Responsibility: Formatting decoupled from data models.", "Data Integrity: Regex-based validation for metadata."],
-        link: "https://github.com/bsoenmez3/ScholarSystem" 
+        link: "https://github.com/bsoenmez3/ScholarSystem"
       },
-      { 
-        id: "trust", title: "Autonomous Systems Hybrid Fusion Framework", tech: "Java / Evidence-Core / Math", 
+      {
+        id: "trust", title: "Autonomous Systems Hybrid Fusion Framework", tech: "Java / Evidence-Core / Math",
         shortDesc: "Reliability framework for autonomous systems using Java and Dempster-Shafer Theory.",
         fullDesc: "Based on my Bachelor's thesis, this project expands the open-source Java library 'evidence-core' to evaluate the trustworthiness of autonomous systems. It introduces a hybrid fusion framework using Dempster-Shafer Theory (DST) to integrate probabilistic Vehicle-to-Infrastructure (V2I) data with evidential on-board sensor data. The system safely handles conflicting and ambiguous evidence using Yager's combination rule.",
         highlights: [
-          "Evidence-Core Expansion: Extended a Java library for evidential reasoning.", 
-          "DST & Yager's Rule: Modeled epistemic uncertainty and ambiguity, avoiding overconfidence in conflicting scenarios.", 
+          "Evidence-Core Expansion: Extended a Java library for evidential reasoning.",
+          "DST & Yager's Rule: Modeled epistemic uncertainty and ambiguity, avoiding overconfidence in conflicting scenarios.",
           "Hybrid Sensor Fusion: Developed modular converters to transform probabilistic inputs and machine learning One-vs-Rest (OvR) scores into Basic Belief Assignments (BBAs)."
         ]
       },
-      { 
-       id: "producer-consumer", 
-       title: "Multi-threaded Producer-Consumer Simulation", 
-       tech: "Java / Concurrency", 
-       shortDesc: "A multi-threaded Java simulation demonstrating thread synchronization and shared resource management.",
-       fullDesc: "This project simulates the classic Producer-Consumer synchronization problem using multi-threading. It demonstrates how to handle shared resources in a concurrent environment, utilizing intrinsic locks and inter-thread communication mechanisms like wait() and notifyAll(). The system ensures thread-safe operations as producers generate data into a shared buffer and consumers concurrently remove it for processing.",
-       highlights: [
-       "Thread Synchronization: Leveraged wait() and notifyAll() for effective inter-thread communication and state management.", 
-       "Shared Resource Control: Built a robust, thread-safe Buffer to manage concurrent data access without race conditions.", 
-       "Concurrency Architecture: Structured application flow with dedicated Producer and Consumer threads managed via a central application runner."
-       ],
-       link: "https://github.com/bsoenmez3/ProducerConsumerProblem" 
+      {
+        id: "producer-consumer",
+        title: "Multi-threaded Producer-Consumer Simulation",
+        tech: "Java / Concurrency",
+        shortDesc: "A multi-threaded Java simulation demonstrating thread synchronization and shared resource management.",
+        fullDesc: "This project simulates the classic Producer-Consumer synchronization problem using multi-threading. It demonstrates how to handle shared resources in a concurrent environment, utilizing intrinsic locks and inter-thread communication mechanisms like wait() and notifyAll(). The system ensures thread-safe operations as producers generate data into a shared buffer and consumers concurrently remove it for processing.",
+        highlights: [
+          "Thread Synchronization: Leveraged wait() and notifyAll() for effective inter-thread communication and state management.",
+          "Shared Resource Control: Built a robust, thread-safe Buffer to manage concurrent data access without race conditions.",
+          "Concurrency Architecture: Structured application flow with dedicated Producer and Consumer threads managed via a central application runner."
+        ],
+        link: "https://github.com/bsoenmez3/ProducerConsumerProblem"
       },
-      { 
-        id: "haskell", title: "Mini Projects in Haskell", tech: "Haskell / Functional", 
+      {
+        id: "haskell", title: "Mini Projects in Haskell", tech: "Haskell / Functional",
         shortDesc: "A collection of mini-projects exploring the functional programming paradigm.",
         fullDesc: "Developed to explore and master functional programming paradigms using Haskell. Focuses on immutability, pure functions, and strong type systems to solve algorithmic challenges.",
         highlights: [
-          "Pure Functions: Implementing complex logic without side effects.", 
-          "Recursion & Higher-Order Functions: Heavy use of map, fold, and filter.", 
+          "Pure Functions: Implementing complex logic without side effects.",
+          "Recursion & Higher-Order Functions: Heavy use of map, fold, and filter.",
           "Custom Data Types: Leveraging Haskell's algebraic data types."
         ],
-        link: "https://github.com/bsoenmez3/HaskellProblems" 
+        link: "https://github.com/bsoenmez3/HaskellProblems"
       }
     ]
   },
@@ -207,7 +204,7 @@ const content = {
     viewDetails: "Details ansehen",
     viewRepo: "Repository ansehen",
     highlightsTitle: "Technische Highlights",
-    
+
     kitName: "Karlsruher Institut für Technologie (KIT)",
     kabatasName: "Kabataş Erkek Gymnasium",
 
@@ -229,7 +226,6 @@ const content = {
     kaGalleryTitle: "System-Schnittstellen",
     kaGalleryHint: "Hovern zum Erweitern der Galerie",
 
-    // --- THESIS ARCHITECTURE SECTION (DE) ---
     thesisSectionHighlight: "Bachelorarbeit",
     thesisSectionTitle: "Autonomous Systems Hybrid Fusion Framework",
     thesisSectionDesc: "Ein neuartiges hybrides Fusions-Framework zur Integration probabilistischer Vehicle-to-Infrastructure (V2I) Daten mit Bordsensoren. Entwickelt zur sicheren Konfliktauflösung und Quantifizierung epistemischer Unsicherheit mithilfe der Dempster-Shafer-Theorie.",
@@ -271,92 +267,92 @@ const content = {
       { name: "Englisch", level: "B2 - C1 Niveau", info: "Globaler Tech-Standard.", color: "from-blue-500 to-indigo-600", dots: 4 },
       { name: "Spanisch", level: "Grundkenntnisse", info: "Lerne gerade auf Spanisch zu singen :)", color: "from-emerald-400 to-teal-500", dots: 1 }
     ],
-    
+
     experiences: [
-      { 
-        company: "Fraunhofer IOSB", 
-        role: "Studentische Hilfskraft (HiWi)", 
-        period: "Jan 2026 – Heute", 
+      {
+        company: "Fraunhofer IOSB",
+        role: "Studentische Hilfskraft (HiWi)",
+        period: "Jan 2026 – Heute",
         tech: "Python · Django · Docker · REST APIs",
         tasks: [
-          "Backend-Entwicklung für ein Deep-Learning-Tool", 
-          "Videobasierte Sicherheits- und Assistenzsysteme", 
+          "Backend-Entwicklung für ein Deep-Learning-Tool",
+          "Videobasierte Sicherheits- und Assistenzsysteme",
           "Datenverarbeitung und RESTful API-Architektur"
-        ] 
+        ]
       },
-      { 
-        company: "1&1 Mail & Media", 
-        role: "Werkstudentin", 
-        period: "Jul 2022 – Sep 2025", 
+      {
+        company: "1&1 Mail & Media",
+        role: "Werkstudentin",
+        period: "Jul 2022 – Sep 2025",
         tech: "Java · SonarQube · CI/CD · Jira · Automation",
         tasks: [
-          "Zusammenarbeit mit Senior Devs & Testern in agilen Teams (Daily Stand-ups, Retrospectives)", 
-          "Umsetzung von Sicherheitsanforderungen & Behebung von SonarQube-Issues", 
+          "Zusammenarbeit mit Senior Devs & Testern in agilen Teams (Daily Stand-ups, Retrospectives)",
+          "Umsetzung von Sicherheitsanforderungen & Behebung von SonarQube-Issues",
           "CI/CD-Pipeline-Anpassungen, Endpoint-Migrationen und automatisierte Tests"
-        ] 
+        ]
       },
-      { 
-        company: "TECO Research Group · KIT", 
-        role: "Software-Praktikantin", 
-        period: "Mai 2023 – Sep 2023", 
+      {
+        company: "TECO Research Group · KIT",
+        role: "Software-Praktikantin",
+        period: "Mai 2023 – Sep 2023",
         tech: "Java · TypeScript · Python · LaTeX",
         tasks: [
-          "Entwicklung des 'KlausurAutomators' zur digitalen Prüfungsautomatisierung", 
-          "Zusammenarbeit im 5er-Team zur Reduzierung des Lehrkräfte-Workloads", 
+          "Entwicklung des 'KlausurAutomators' zur digitalen Prüfungsautomatisierung",
+          "Zusammenarbeit im 5er-Team zur Reduzierung des Lehrkräfte-Workloads",
           "Full-Stack-Entwicklung & LaTeX-Workflow-Automatisierung"
-        ] 
+        ]
       }
     ],
     projects: [
-      { 
-        id: "runa", title: "Monster Hunter: Runa’s Strive", tech: "Java / OOP / CLI", 
+      {
+        id: "runa", title: "Monster Hunter: Runa’s Strive", tech: "Java / OOP / CLI",
         shortDesc: "Ein rundenbasiertes RPG mit Deck-Management und klassenbasiertem Kampf.",
         fullDesc: "Entwickelt als 1-wöchiges Intensivprojekt. Spieler navigieren durch Level und verwalten Fähigkeiten strategisch über ein CLI.",
         highlights: ["Klassenvielfalt: Krieger, Magier oder Paladin.", "Strategisches Heilen: Karten abwerfen für HP.", "Modulare Architektur: Saubere Logik-Trennung."],
-        link: "https://github.com/bsoenmez3/RunasStriveRPG" 
+        link: "https://github.com/bsoenmez3/RunasStriveRPG"
       },
-      { 
-        id: "scholar", title: "Scholar Management System", tech: "Java / Clean Code", 
+      {
+        id: "scholar", title: "Scholar Management System", tech: "Java / Clean Code",
         shortDesc: "Fortschrittliches System, das Vererbung und Polymorphismus nutzt.",
         fullDesc: "Berechnet den g-Index von Forschern, analiziert Artikelähnlichkeit und formatiert Bibliografien (APA/ACM).",
         highlights: ["Vererbung: Strukturierte Hierarchie für Publikationen.", "SRP: Formatierung von Datenmodellen entkoppelt.", "Validierung: Regex-basierte Metadaten-Prüfung."],
-        link: "https://github.com/bsoenmez3/ScholarSystem" 
+        link: "https://github.com/bsoenmez3/ScholarSystem"
       },
-      { 
-        id: "trust", 
-        title: "Autonomous Systems Hybrid Fusion Framework", 
-        tech: "Java / Evidence-Core / Math", 
-        shortDesc: "Zuverlässigkeits-Framework für autonome Systeme basierend auf Java und der Dempster-Shafer-Theorie.", 
-        fullDesc: "Basierend auf meiner Bachelorarbeit erweitert dieses Projekt die Open-Source-Java-Bibliothek 'evidence-core' zur Bewertung der Vertrauenswürdigkeit autonomer Systeme. Es führt ein hybrides Fusion-Framework ein, das die Dempster-Shafer-Theorie (DST) nutzt, um probabilistische Vehicle-to-Infrastructure (V2I) Daten mit evidenzbasierten On-Board-Sensordaten zu integrieren. Das System bewältigt widersprüchliche und mehrdeutige Evidenzen sicher unter Anwendung der Yager-Kombinationsregel.", 
-        highlights: [ 
-          "Evidence-Core Erweiterung: Ausbau einer Java-Bibliothek für evidentielles Schließen (Evidential Reasoning).", 
-          "DST & Yagers Regel: Modellierung epistemischer Unsicherheit und Ambiguität zur Vermeidung von Overconfidence in Konfliktszenarien.", 
-          "Hybride Sensorfusion: Entwicklung modularer Konverter zur Transformation von probabilistischen Eingaben und Machine Learning One-vs-Rest (OvR) Scores in Basic Belief Assignments (BBAs)." 
-        ] 
+      {
+        id: "trust",
+        title: "Autonomous Systems Hybrid Fusion Framework",
+        tech: "Java / Evidence-Core / Math",
+        shortDesc: "Zuverlässigkeits-Framework für autonome Systeme basierend auf Java und der Dempster-Shafer-Theorie.",
+        fullDesc: "Basierend auf meiner Bachelorarbeit erweitert dieses Projekt die Open-Source-Java-Bibliothek 'evidence-core' zur Bewertung der Vertrauenswürdigkeit autonomer Systeme. Es führt ein hybrides Fusion-Framework ein, das die Dempster-Shafer-Theorie (DST) nutzt, um probabilistische Vehicle-to-Infrastructure (V2I) Daten mit evidenzbasierten On-Board-Sensordaten zu integrieren. Das System bewältigt widersprüchliche und mehrdeutige Evidenzen sicher unter Anwendung der Yager-Kombinationsregel.",
+        highlights: [
+          "Evidence-Core Erweiterung: Ausbau einer Java-Bibliothek für evidentielles Schließen (Evidential Reasoning).",
+          "DST & Yagers Regel: Modellierung epistemischer Unsicherheit und Ambiguität zur Vermeidung von Overconfidence in Konfliktszenarien.",
+          "Hybride Sensorfusion: Entwicklung modularer Konverter zur Transformation von probabilistischen Eingaben und Machine Learning One-vs-Rest (OvR) Scores in Basic Belief Assignments (BBAs)."
+        ]
       },
-      { 
-       id: "producer-consumer", 
-        title: "Multi-threaded Producer-Consumer Simulation", 
-        tech: "Java / Concurrency", 
+      {
+        id: "producer-consumer",
+        title: "Multi-threaded Producer-Consumer Simulation",
+        tech: "Java / Concurrency",
         shortDesc: "Eine Multithread-Java-Simulation, die Thread-Synchronisation und die Verwaltung gemeinsamer Ressourcen demonstriert.",
         fullDesc: "Dieses Projekt simuliert das klassische Erzeuger-Verbraucher-Problem (Producer-Consumer) mittels Multithreading. Es zeigt, wie gemeinsame Ressourcen in einer nebenläufigen Umgebung gehandhabt werden, unter Verwendung von intrinsischen Locks und Inter-Thread-Kommunikationsmechanismen wie wait() und notifyAll(). Das System gewährleistet threadsichere Operationen, während Erzeuger (Producers) Daten in einem gemeinsamen Puffer ablegen und Verbraucher (Consumers) diese gleichzeitig zur Verarbeitung entnehmen.",
         highlights: [
-          "Thread-Synchronisation: Nutzung von wait() und notifyAll() für eine effektive Inter-Thread-Kommunikation und Zustandsverwaltung.", 
-          "Ressourcenkontrolle: Entwicklung eines robusten, threadsicheren Puffers zur Verwaltung von simultanen Datenzugriffen ohne Race Conditions.", 
+          "Thread-Synchronisation: Nutzung von wait() und notifyAll() für eine effektive Inter-Thread-Kommunikation und Zustandsverwaltung.",
+          "Ressourcenkontrolle: Entwicklung eines robusten, threadsicheren Puffers zur Verwaltung von simultanen Datenzugriffen ohne Race Conditions.",
           "Concurrency-Architektur: Strukturierter Anwendungsablauf mit dedizierten Producer- und Consumer-Threads, gesteuert durch eine zentrale Hauptanwendung."
         ],
-        link: "https://github.com/bsoenmez3/ProducerConsumerProblem" 
-},
-      { 
-        id: "haskell", title: "Mini Projects in Haskell", tech: "Haskell / Functional", 
+        link: "https://github.com/bsoenmez3/ProducerConsumerProblem"
+      },
+      {
+        id: "haskell", title: "Mini Projects in Haskell", tech: "Haskell / Functional",
         shortDesc: "Eine Sammlung von Mini-Projekten zur Erkundung des funktionalen Programmierparadigmas.",
         fullDesc: "Entwickelt, um funktionale Programmierparadigmen mit Haskell zu erforschen und zu meistern. Konzentriert sich auf Immutabilität, reine Funktionen und strenge Typsysteme zur Lösung algorithmischer Herausforderungen.",
         highlights: [
-          "Reine Funktionen: Implementierung komplexer Logik ohne Seiteneffekte.", 
-          "Rekursion & Funktionen höherer Ordnung: Starker Einsatz von map, fold und filter.", 
+          "Reine Funktionen: Implementierung komplexer Logik ohne Seiteneffekte.",
+          "Rekursion & Funktionen höherer Ordnung: Starker Einsatz von map, fold und filter.",
           "Eigene Datentypen: Nutzung algebraischer Datentypen in Haskell."
         ],
-        link: "https://github.com/bsoenmez3/HaskellProblems" 
+        link: "https://github.com/bsoenmez3/HaskellProblems"
       }
     ]
   }
@@ -367,7 +363,7 @@ const projectIcons: Record<string, React.ReactNode> = {
   scholar: <BookOpen size={24} />,
   trust: <Shield size={24} />,
   haskell: <Binary size={24} />,
-  "producer-consumer": <Database size={24} /> 
+  "producer-consumer": <Database size={24} />
 };
 
 const experienceIcons = [<Rocket size={20} />, <Shield size={20} />, <Layers size={20} />];
@@ -385,11 +381,11 @@ export default function BilgePortfolio() {
   }, [activeProject]);
 
   return (
-    <div 
+    <div
       className="bg-[#F4F7FA] text-[#1A1A1A] selection:bg-indigo-100 overflow-x-hidden relative"
       style={{ fontFamily: "'DM Sans', -apple-system, sans-serif" }}
     >
-      {/* YENİ VE DÜZ FONT: Inter eklendi, Space Grotesk kaldırıldı */}
+      { }
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
         .font-serif-custom { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; }
@@ -398,26 +394,26 @@ export default function BilgePortfolio() {
 
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-indigo-600 origin-left z-[100]" style={{ scaleX }} />
 
-      {/* NAV */}
+      { }
       <nav className="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-[#F4F7FA]/70 backdrop-blur-md border-b border-black/5">
         <span className="font-semibold text-lg tracking-tight lowercase">{t.name.replace(' ', '.')}</span>
-        <button 
-          onClick={() => setLang(lang === 'en' ? 'de' : 'en')} 
+        <button
+          onClick={() => setLang(lang === 'en' ? 'de' : 'en')}
           className="text-[10px] font-bold tracking-[0.2em] border border-black/10 px-4 py-2 rounded-full hover:bg-black hover:text-white transition-all uppercase"
         >
           {lang}
         </button>
       </nav>
 
-      {/* HERO */}
+      { }
       <section className="h-screen flex flex-col justify-center items-center px-6 text-center relative">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }}>
           <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white shadow-2xl bg-white">
-            <img 
-              src="/images/profile.jpg" 
-              alt={t.name} 
-              className="w-full h-full object-cover" 
-              onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=Bilge+Sonmez&background=6366f1&color=fff'; }} 
+            <img
+              src="/images/profile.jpg"
+              alt={t.name}
+              className="w-full h-full object-cover"
+              onError={(e) => { e.currentTarget.src = 'https://ui-avatars.com/api/?name=Bilge+Sonmez&background=6366f1&color=fff'; }}
             />
           </div>
           <h1 className="text-6xl md:text-[9rem] tracking-tight mb-6 text-[#111] font-tech font-semibold">{t.name}</h1>
@@ -426,14 +422,14 @@ export default function BilgePortfolio() {
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }} className="absolute bottom-10 opacity-20"><ChevronDown size={24} /></motion.div>
       </section>
 
-      {/* EDUCATION */}
+      { }
       <section className="py-20 relative">
         <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase opacity-40 mb-24 text-center">{t.eduTitle}</h2>
         <WaveSection img="/images/kit.jpg" title={t.kitName} year="2020 — 2026" desc={t.kitDesc} extras={t.kitExtras} />
         <WaveSection img="/images/kabatas.jpg" title={t.kabatasName} year="2015 — 2020" desc={t.kabatasDesc} reverse />
       </section>
 
-      {/* THESIS BANNER */}
+      { }
       <section className="py-40 px-6 bg-white border-y border-black/5 relative shadow-[0_0_50px_rgba(0,0,0,0.02)]">
         <Reveal>
           <div className="max-w-4xl mx-auto text-center">
@@ -444,7 +440,7 @@ export default function BilgePortfolio() {
         </Reveal>
       </section>
 
-      {/* EXPERIENCE - PLACED BEFORE PROJECTS */}
+      { }
       <section className="py-40 bg-[#0A0A0A] text-white relative">
         <div className="max-w-5xl mx-auto px-6">
           <Reveal><h2 className="text-5xl md:text-7xl font-medium tracking-tight mb-40 text-center font-tech">{t.expTitle}</h2></Reveal>
@@ -456,7 +452,7 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* PROJECTS (GITHUB SLIDER) - PLACED AFTER EXPERIENCE */}
+      { }
       <section className="py-40 bg-[#F4F7FA] overflow-hidden relative border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-end mb-16">
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight font-tech text-[#111]">{t.githubTitle}</h2>
@@ -472,8 +468,8 @@ export default function BilgePortfolio() {
               <p className="text-indigo-600 font-bold text-[10px] uppercase tracking-widest mb-6">{project.tech}</p>
               <p className="text-black/40 font-light mb-10 h-24 italic leading-relaxed">"{project.shortDesc}"</p>
               <div className="mt-auto">
-                <button 
-                  onClick={() => setActiveProject(project)} 
+                <button
+                  onClick={() => setActiveProject(project)}
                   className="px-6 py-3 bg-[#F4F7FA] border border-black/5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-indigo-600 hover:text-white transition-colors"
                 >
                   {t.viewDetails}
@@ -484,7 +480,7 @@ export default function BilgePortfolio() {
         </motion.div>
       </section>
 
-      {/* KLAUSURAUTOMATOR - PLACED AFTER PROJECTS */}
+      { }
       <section className="py-40 bg-white border-b border-black/5 relative">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
@@ -494,7 +490,7 @@ export default function BilgePortfolio() {
                   {t.klausurHighlight}
                 </span>
                 <h2 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8 uppercase leading-none font-tech text-[#111]">
-                  Klausur<br/>Automator
+                  Klausur<br />Automator
                 </h2>
                 <p className="text-lg text-black/60 font-light leading-relaxed mb-12 italic">
                   {t.kaDesc}
@@ -569,15 +565,15 @@ export default function BilgePortfolio() {
                   <h4 className="text-[10px] font-bold tracking-[0.3em] uppercase text-black/40 mb-6 block">{t.kaGalleryTitle}</h4>
                   <div className="flex -space-x-8 hover:space-x-2 transition-all duration-500 ease-out py-4">
                     {[1, 2, 3, 4, 5].map((num) => (
-                      <motion.div 
+                      <motion.div
                         key={num}
                         whileHover={{ scale: 1.2, zIndex: 50, y: -10 }}
                         initial={{ rotate: Math.random() * 10 - 5 }}
                         className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-[3px] border-white shadow-xl flex-shrink-0 cursor-zoom-in transition-transform duration-300 bg-white"
                       >
-                        <img 
-                          src={`/images/klausur${num}.jpg`} 
-                          alt={`Klausurautomator Interface ${num}`} 
+                        <img
+                          src={`/images/klausur${num}.jpg`}
+                          alt={`Klausurautomator Interface ${num}`}
                           className="w-full h-full object-cover"
                           onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800'; }}
                         />
@@ -592,10 +588,10 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* THESIS ARCHITECTURE REVEAL SECTION (YIRTILARAK AÇILAN RESİM EFEKTİ) */}
+      { }
       <ThesisArchitectureSection t={t} />
 
-      {/* VOLUNTEERING */}
+      { }
       <section className="py-40 bg-white border-y border-black/5 overflow-hidden relative shadow-[0_0_50px_rgba(0,0,0,0.02)]">
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-end mb-16">
           <div>
@@ -619,7 +615,7 @@ export default function BilgePortfolio() {
         </motion.div>
       </section>
 
-      {/* HOBBIES */}
+      { }
       <section className="py-40 bg-[#F4F7FA] relative">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
@@ -646,7 +642,7 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* LANGUAGES */}
+      { }
       <section className="py-40 bg-white relative border-y border-black/5 shadow-[0_0_50px_rgba(0,0,0,0.02)]">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
@@ -674,7 +670,7 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* FOOTER */}
+      { }
       <footer className="py-32 text-center bg-[#F4F7FA] relative">
         <Reveal>
           <p className="text-indigo-600 font-bold mb-4 uppercase tracking-[0.3em] text-[10px]">{t.cta}</p>
@@ -690,19 +686,19 @@ export default function BilgePortfolio() {
         </Reveal>
       </footer>
 
-      {/* MODAL */}
+      { }
       <AnimatePresence>
         {activeProject && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[200] flex items-center justify-center bg-black/40 backdrop-blur-md p-4 md:p-6" onClick={() => setActiveProject(null)}>
-            <motion.div 
-              initial={{ y: 50, scale: 0.95 }} 
-              animate={{ y: 0, scale: 1 }} 
-              exit={{ y: 20, scale: 0.95 }} 
-              className="bg-white rounded-[40px] max-w-2xl w-full max-h-[85vh] overflow-y-auto p-10 md:p-14 relative shadow-2xl" 
+            <motion.div
+              initial={{ y: 50, scale: 0.95 }}
+              animate={{ y: 0, scale: 1 }}
+              exit={{ y: 20, scale: 0.95 }}
+              className="bg-white rounded-[40px] max-w-2xl w-full max-h-[85vh] overflow-y-auto p-10 md:p-14 relative shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <button 
-                onClick={() => setActiveProject(null)} 
+              <button
+                onClick={() => setActiveProject(null)}
                 aria-label="Close modal"
                 className="absolute top-8 right-8 w-10 h-10 bg-[#F4F7FA] rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors"
               >
@@ -721,10 +717,10 @@ export default function BilgePortfolio() {
                   </li>
                 ))}
               </ul>
-              <a 
-                href={activeProject.link} 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href={activeProject.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-black text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-indigo-600 transition-colors w-full md:w-auto justify-center"
               >
                 {t.viewRepo} <ExternalLink size={16} />
@@ -744,11 +740,11 @@ function WaveSection({ img, title, year, desc, extras, reverse = false }: any) {
   return (
     <div ref={ref} className={`flex flex-col ${reverse ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-16 px-6 max-w-7xl mx-auto mb-48 relative`}>
       <div className="flex-1 w-full aspect-[16/10] overflow-hidden rounded-[40px] relative border border-black/5 bg-[#F4F7FA] shadow-lg">
-        <motion.img 
-          style={{ y }} 
-          src={img} 
+        <motion.img
+          style={{ y }}
+          src={img}
           alt={title}
-          className="absolute inset-0 w-full h-[130%] object-cover scale-110" 
+          className="absolute inset-0 w-full h-[130%] object-cover scale-110"
         />
       </div>
       <div className="flex-1 space-y-5">
@@ -790,23 +786,16 @@ function TimelineItem({ company, role, period, tech, tasks, icon }: any) {
   );
 }
 
-// -----------------------------------------------------------
-// DAHA YAVAŞ, GECİKMELİ VE ZARİF AÇILAN MİMARİ BÖLÜMÜ
-// -----------------------------------------------------------
+
 function ThesisArchitectureSection({ t }: { t: any }) {
   const ref = useRef(null);
-  
-  // Animasyon ekranın %70'inden başlar, tepeye çıkana kadar devam eder.
+
   const { scrollYProgress: rawProgress } = useScroll({ target: ref, offset: ["start 70%", "end start"] });
-  
-  // Yavaşça yaylanma efekti.
+
   const scrollYProgress = useSpring(rawProgress, { stiffness: 60, damping: 20 });
-  
-  // Resimlerin dışarı doğru açılma değerleri
+
   const xLeft = useTransform(scrollYProgress, [0.2, 0.7], ["0%", "-100%"]);
   const xRight = useTransform(scrollYProgress, [0.2, 0.7], ["0%", "100%"]);
-  
-  // YAZININ GÖRÜNÜRLÜĞÜ GÜNCELLENDİ (opacity 0.15'te başlıyor, resim kaydıkça yazı zaten belirmiş oluyor)
   const textOpacity = useTransform(scrollYProgress, [0.15, 0.4], [0, 1]);
   const textScale = useTransform(scrollYProgress, [0.2, 0.6], [0.95, 1]);
 
@@ -816,8 +805,8 @@ function ThesisArchitectureSection({ t }: { t: any }) {
 
         <div className="relative w-full aspect-[4/3] md:aspect-[21/9] flex items-center justify-center mb-20 rounded-[40px]">
 
-          {/* 1. GİZLİ YAZI: En altta duruyor. Resim yarılıp açılınca bu yazı ortaya çıkacak. */}
-          <motion.div 
+          { }
+          <motion.div
             className="absolute z-0 flex flex-col items-center justify-center text-center max-w-4xl px-6"
             style={{ opacity: textOpacity, scale: textScale }}
           >
@@ -832,45 +821,45 @@ function ThesisArchitectureSection({ t }: { t: any }) {
             </p>
           </motion.div>
 
-          {/* 2. RESMİN SOL YARISI */}
-          <motion.div 
+          { }
+          <motion.div
             className="absolute inset-0 w-full h-full z-10 bg-[#F4F7FA] flex items-center justify-center rounded-[40px] shadow-2xl"
-            style={{ 
-              clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)', 
-              x: xLeft 
+            style={{
+              clipPath: 'polygon(0 0, 50% 0, 50% 100%, 0 100%)',
+              x: xLeft
             }}
           >
-            <img 
-              src="/images/architecture.jpg" 
-              alt="Autonomous Trust Labs Architecture Left" 
+            <img
+              src="/images/architecture.jpg"
+              alt="Autonomous Trust Labs Architecture Left"
               className="w-full h-full object-cover md:object-contain p-2 md:p-8"
               onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000'; }}
             />
-            {/* Ortadaki kesik çizgi gölgesi */}
+            { }
             <div className="absolute top-0 right-1/2 bottom-0 w-px bg-black/10 shadow-[2px_0_10px_rgba(0,0,0,0.15)]" />
           </motion.div>
 
-          {/* 3. RESMİN SAĞ YARISI */}
-          <motion.div 
+          { }
+          <motion.div
             className="absolute inset-0 w-full h-full z-10 bg-[#F4F7FA] flex items-center justify-center rounded-[40px] shadow-2xl"
-            style={{ 
-              clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)', 
-              x: xRight 
+            style={{
+              clipPath: 'polygon(50% 0, 100% 0, 100% 100%, 50% 100%)',
+              x: xRight
             }}
           >
-            <img 
-              src="/images/architecture.jpg" 
-              alt="Autonomous Trust Labs Architecture Right" 
+            <img
+              src="/images/architecture.jpg"
+              alt="Autonomous Trust Labs Architecture Right"
               className="w-full h-full object-cover md:object-contain p-2 md:p-8"
               onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000'; }}
             />
-            {/* Ortadaki kesik çizgi gölgesi */}
+            { }
             <div className="absolute top-0 left-1/2 bottom-0 w-px bg-black/10 shadow-[-2px_0_10px_rgba(0,0,0,0.15)]" />
           </motion.div>
 
         </div>
 
-        {/* Kilit Mimari Özellikler (Alt Kartlar) */}
+        { }
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {[
             { icon: <Database size={28} />, title: t.thesisF1Title, desc: t.thesisF1Desc },
