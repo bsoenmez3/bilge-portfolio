@@ -16,7 +16,7 @@ interface Project {
   shortDesc: string;
   fullDesc: string;
   highlights: string[];
-  link: string;
+  link?: string;
 }
 
 interface Experience {
@@ -30,10 +30,10 @@ interface Experience {
 const content = {
   en: {
     name: "Bilge Sönmez",
-    sub: "B.Sc. Informatik Graduate from KIT (April 2026). Specializing in Backend Architectures and Clean Code.",
+    sub: "B.Sc. Informatik Graduate from KIT (März 2026).",
     thesis: "Bachelor's Thesis: Quantitative Trustworthiness Analysis of Autonomous Systems",
     eduTitle: "Academic Foundation",
-    githubTitle: "Engineering Labs",
+    githubTitle: "Technical Projects",
     expTitle: "Professional Journey",
     footer: "© 2026 Bilge Sönmez — Karlsruhe",
     cta: "Let's Work Together!",
@@ -76,6 +76,7 @@ const content = {
     thesisF4Desc: "Engineered modular converters transforming uncalibrated Machine Learning (One-vs-Rest) scores into reliable evidence.",
 
     volunteeringTitle: "Community & Impact",
+    volunteeringSub: "Social responsibility and leadership through volunteering.",
     volunteering: [
       { org: "Best Buddies International", role: "School Program Coordinator & Captain", period: "2016 – 2018", desc: "Led a team of 50 volunteers as Turkey chapter captain. Advocated for people with autism and Down syndrome.", tag: "Social Inclusion" },
       { org: "Istanbul Youth Platform", role: "Volunteer & Small Hands Big Dreams", period: "2017 – 2018", desc: "Expanded the vision of students from socio-economically disadvantaged neighborhoods through workshops and mentoring.", tag: "Youth Leadership" },
@@ -84,18 +85,23 @@ const content = {
     ],
 
     hobbiesTitle: "Beyond the Code",
-    hobbiesSub: "The human behind the engineer.",
+    hobbiesSub: "My hobbies:",
     hobbies: [
-      { icon: <Plane size={20} />, name: "Travelling", desc: "Collecting new perspectives one city at a time." },
-      { icon: <Leaf size={20} />, name: "Yoga & Meditation", desc: "Stillness as a counterbalance to complex systems." },
-      { icon: <Heart size={20} />, name: "Dancing", desc: "Movement as a form of creative expression." },
-      { icon: <Music size={20} />, name: "Piano & Guitar", desc: "Two instruments, one language." },
-      { icon: <Camera size={20} />, name: "Photography", desc: "Framing the world through a different lens." },
-      { icon: <Youtube size={20} />, name: "Educational YouTube", desc: "Creating videos that make learning accessible." },
+      { icon: <Plane size={20} />, name: "Travelling" },
+      { icon: <Leaf size={20} />, name: "Yoga & Meditation" },
+      { icon: <Heart size={20} />, name: "Dancing" },
+      { icon: <Music size={20} />, name: "Piano & Guitar" },
+      { icon: <Camera size={20} />, name: "Photography" },
+      { icon: <Youtube size={20} />, name: "Educational YouTube" },
     ],
 
-    kitDesc: "Focused on Autonomous Systems, Safety, and Software Engineering.",
-    kitExtras: "Supplementary subjects in Business Administration (BWL): Management and Marketing, Consumer Behavior, Finance and Accounting.",
+    kitMasterDegree: "M.Sc. in Computer Science",
+    kitBachelorDegree: "B.Sc. in Computer Science",
+    kitBachelorYear: "2020 — 2026",
+    kitBachelorExtras: "Supplementary subjects in Business Administration (BWL): Management and Marketing, Consumer Behavior, Finance and Accounting.",
+    kitMasterYear: "April 2026 — Present",
+    kitMasterDesc: "Advanced study in Computer Science with specialization in autonomous systems and applied machine learning.",
+    kitMasterExtras: "Building on bachelor's foundation with focus on distributed systems, safety-critical software, and AI applications.",
     kabatasDesc: "Graduated top 0.03% nationally. Developed foundation in leadership and analytical thinking.",
     languagesTitle: "Communication Stack",
     languages: [
@@ -104,6 +110,19 @@ const content = {
       { name: "English", level: "B2 - C1 Proficiency", info: "Global tech standard.", color: "from-blue-500 to-indigo-600", dots: 4 },
       { name: "Spanish", level: "Elementary", info: "Learning to sing in Spanish :)", color: "from-emerald-400 to-teal-500", dots: 1 }
     ],
+
+    recommendationTitle: "Letter of Recommendation",
+    recommendationSubtitle: "From: Matthias Hüller, Engineering Manager at 1&1 Mail & Media",
+    recommendationRecognition: "Professional Recognition",
+    qualitiesTitle: "Professional Qualities",
+    quality1: "Consistent dedication, intelligence, and positive attitude",
+    quality2: "Exceptional contributions despite part-time work schedule",
+    quality3: "High degree of reliability and professional attitude",
+    skillsTitle: "Technical & Soft Skills",
+    skill1: "Technical Mastery: Java, Spring ecosystem, GitLab, JIRA, security compliance",
+    skill2: "Communication: Fluent in German & English, excellent collaboration",
+    skill3: "Leadership Potential: Suited for Product Owner & Technical Product Manager roles",
+    recommendationQuote: "Bilge combines technical talent with a professional attitude and strong interpersonal skills. She has consistently impressed with her dedication, intelligence, and positive attitude. I have no doubt that she will be a valuable asset to any team fortunate enough to have her.",
 
     experiences: [
       {
@@ -193,10 +212,10 @@ const content = {
   },
   de: {
     name: "Bilge Sönmez",
-    sub: "B.Sc. Informatik Absolventin am KIT (April 2026). Spezialisiert auf Backend-Architekturen und Clean Code.",
+    sub: "B.Sc. Informatik Absolventin am KIT (März 2026).",
     thesis: "Bachelorarbeit: Quantitative Vertrauenswürdigkeitsanalyse autonomer Systeme",
     eduTitle: "Akademischer Hintergrund",
-    githubTitle: "Engineering Labs",
+    githubTitle: "Technische Projekte",
     expTitle: "Beruflicher Werdegang",
     footer: "© 2026 Bilge Sönmez — Karlsruhe",
     cta: "Lassen Sie uns zusammenarbeiten!",
@@ -239,6 +258,7 @@ const content = {
     thesisF4Desc: "Entwicklung modularer Konverter, die unkalibrierte Machine-Learning-Scores in verlässliche Evidenz umwandeln.",
 
     volunteeringTitle: "Gemeinschaft & Engagement",
+    volunteeringSub: "Soziale Verantwortung und Führung durch ehrenamtliches Engagement.",
     volunteering: [
       { org: "Best Buddies International", role: "Schulprogramm-Koordinatorin & Kapitänin", period: "2016 – 2018", desc: "Leitete ein Team von 50 Freiwilligen. Eingesetzt für Menschen mit Autismus und Down-Syndrom.", tag: "Soziale Inklusion" },
       { org: "Istanbuler Jugendplattform", role: "Freiwillige", period: "2017 – 2018", desc: "Horizont von Schülern aus sozioökonomisch benachteiligten Stadtteilen erweitert.", tag: "Jugendführung" },
@@ -247,18 +267,23 @@ const content = {
     ],
 
     hobbiesTitle: "Jenseits des Codes",
-    hobbiesSub: "Der Mensch hinter der Ingenieurin.",
+    hobbiesSub: "Meine Hobbies:",
     hobbies: [
-      { icon: <Plane size={20} />, name: "Reisen", desc: "Neue Perspektiven, eine Stadt nach der anderen." },
-      { icon: <Leaf size={20} />, name: "Yoga & Meditation", desc: "Stille als Gegengewicht zu komplexen Systemen." },
-      { icon: <Heart size={20} />, name: "Tanzen", desc: "Bewegung als kreative Ausdrucksform." },
-      { icon: <Music size={20} />, name: "Klavier & Gitarre", desc: "Zwei Instrumente, eine Sprache." },
-      { icon: <Camera size={20} />, name: "Fotografie", desc: "Die Welt durch eine andere Linse betrachten." },
-      { icon: <Youtube size={20} />, name: "YouTube-Bildungskanal", desc: "Videos erstellen, die Lernen zugänglich machen." },
+      { icon: <Plane size={20} />, name: "Reisen" },
+      { icon: <Leaf size={20} />, name: "Yoga & Meditation" },
+      { icon: <Heart size={20} />, name: "Tanzen" },
+      { icon: <Music size={20} />, name: "Klavier & Gitarre" },
+      { icon: <Camera size={20} />, name: "Fotografie" },
+      { icon: <Youtube size={20} />, name: "YouTube-Bildungskanal" },
     ],
 
-    kitDesc: "Fokus auf autonome Systeme, Sicherheit und Software Engineering.",
-    kitExtras: "Ergänzungsfächer in BWL: Management und Marketing, Konsumentenverhalten, Finanzierung und Rechnungswesen.",
+    kitMasterDegree: "M.Sc. in Informatik",
+    kitBachelorDegree: "B.Sc. in Informatik",
+    kitBachelorYear: "2020 — 2026",
+    kitBachelorExtras: "Ergänzungsfächer in BWL: Management und Marketing, Konsumentenverhalten, Finanzierung und Rechnungswesen.",
+    kitMasterYear: "April 2026 — Heute",
+    kitMasterDesc: "Vertieftes Studium der Informatik mit Spezialisierung auf autonome Systeme und angewandtes Machine Learning.",
+    kitMasterExtras: "Aufbauend auf dem Bachelor-Fundament mit Fokus auf verteilte Systeme, sicherheitskritische Software und KI-Anwendungen.",
     kabatasDesc: "Abschluss unter den besten 0,03% landesweit. Fundament in Führung und analytischem Denken aufgebaut.",
     languagesTitle: "Sprachkompetenz",
     languages: [
@@ -267,6 +292,19 @@ const content = {
       { name: "Englisch", level: "B2 - C1 Niveau", info: "Globaler Tech-Standard.", color: "from-blue-500 to-indigo-600", dots: 4 },
       { name: "Spanisch", level: "Grundkenntnisse", info: "Lerne gerade auf Spanisch zu singen :)", color: "from-emerald-400 to-teal-500", dots: 1 }
     ],
+
+    recommendationTitle: "Empfehlungsschreiben",
+    recommendationSubtitle: "Von: Matthias Hüller, Engineering Manager bei 1&1 Mail & Media",
+    recommendationRecognition: "Professionelle Anerkennung",
+    qualitiesTitle: "Professionelle Qualitäten",
+    quality1: "Konsistente Hingabe, Intelligenz und positive Einstellung",
+    quality2: "Außergewöhnliche Beiträge trotz Teilzeitarbeit",
+    quality3: "Hoher Grad an Zuverlässigkeit und professioneller Haltung",
+    skillsTitle: "Technische & Soft Skills",
+    skill1: "Technische Meisterschaft: Java, Spring-Ökosystem, GitLab, JIRA, Sicherheitskonformität",
+    skill2: "Kommunikation: Fließend Deutsch & Englisch, ausgezeichnete Zusammenarbeit",
+    skill3: "Führungspotenzial: Geeignet für Product Owner & Technical Product Manager Rollen",
+    recommendationQuote: "Bilge verbindet technisches Talent mit einer professionellen Haltung und starken zwischenmenschlichen Fähigkeiten. Sie hat mich und mein Team mit ihrer Hingabe, Intelligenz und positiven Einstellung konsistent beeindruckt. Ich bin mir sicher, dass sie ein wertvolles Mitglied für jedes Team sein wird, das das Glück hat, sie zu haben.",
 
     experiences: [
       {
@@ -425,19 +463,8 @@ export default function BilgePortfolio() {
       { }
       <section className="py-20 relative">
         <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase opacity-40 mb-24 text-center">{t.eduTitle}</h2>
-        <WaveSection img="/images/kit.jpg" title={t.kitName} year="2020 — 2026" desc={t.kitDesc} extras={t.kitExtras} />
-        <WaveSection img="/images/kabatas.jpg" title={t.kabatasName} year="2015 — 2020" desc={t.kabatasDesc} reverse />
-      </section>
-
-      { }
-      <section className="py-40 px-6 bg-white border-y border-black/5 relative shadow-[0_0_50px_rgba(0,0,0,0.02)]">
-        <Reveal>
-          <div className="max-w-4xl mx-auto text-center">
-            <Zap size={32} className="mx-auto mb-8 text-indigo-600 opacity-40" />
-            <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-8 leading-tight italic font-tech text-[#111]">"{t.thesis}"</h2>
-            <div className="h-1 w-20 bg-indigo-600 mx-auto opacity-20"></div>
-          </div>
-        </Reveal>
+        <WaveSection img="/images/kit.jpg" title={t.kitName} desc={<><div className="font-semibold">{t.kitMasterDegree}</div><div className="text-sm text-indigo-600 font-bold tracking-widest uppercase">{t.kitMasterYear}</div><div className="font-semibold mt-4">{t.kitBachelorDegree}</div><div className="text-sm text-indigo-600 font-bold tracking-widest uppercase">{t.kitBachelorYear}</div></>} extras={[t.kitMasterExtras, t.kitBachelorExtras]} />
+        <WaveSection img="/images/kabatas.jpg" title={t.kabatasName} year="2015 — 2020" desc={t.kabatasDesc} />
       </section>
 
       { }
@@ -593,16 +620,15 @@ export default function BilgePortfolio() {
 
       { }
       <section className="py-40 bg-white border-y border-black/5 overflow-hidden relative shadow-[0_0_50px_rgba(0,0,0,0.02)]">
-        <div className="max-w-7xl mx-auto px-6 flex justify-between items-end mb-16">
+        <div className="max-w-7xl mx-auto px-6 mb-16">
           <div>
             <h2 className="text-4xl md:text-6xl font-medium tracking-tight font-tech text-[#111]">{t.volunteeringTitle}</h2>
             <p className="text-black/40 font-light italic mt-4 text-xl">{t.volunteeringSub}</p>
           </div>
-          <span className="text-black/20 font-bold text-[10px] uppercase tracking-widest hidden md:block">{t.swipeText}</span>
         </div>
-        <motion.div drag="x" dragConstraints={{ left: -1200, right: 0 }} className="flex gap-6 px-6 cursor-grab active:cursor-grabbing pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-6">
           {t.volunteering.map((v: any, i: number) => (
-            <motion.div key={i} className="min-w-[300px] md:min-w-[360px] bg-[#F4F7FA] border border-black/5 p-10 rounded-[40px] shadow-sm hover:shadow-xl hover:bg-white transition-all group flex flex-col">
+            <Reveal key={i}><div className="bg-[#F4F7FA] border border-black/5 p-10 rounded-[40px] shadow-sm hover:shadow-xl hover:bg-white transition-all group flex flex-col">
               <span className="text-[9px] font-bold tracking-[0.2em] uppercase text-indigo-600 mb-4 bg-indigo-50 border border-indigo-100/50 inline-block px-3 py-1.5 rounded-full w-max">
                 {v.tag}
               </span>
@@ -610,31 +636,32 @@ export default function BilgePortfolio() {
               <p className="text-black/50 italic text-sm mb-4">{v.role}</p>
               <p className="text-indigo-400 font-bold text-[10px] uppercase tracking-widest mb-6">{v.period}</p>
               <p className="text-black/60 font-light leading-relaxed">{v.desc}</p>
-            </motion.div>
+            </div></Reveal>
           ))}
-        </motion.div>
+        </div>
       </section>
 
       { }
-      <section className="py-40 bg-[#F4F7FA] relative">
+      <section className="py-20 bg-[#F4F7FA] relative">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
-            <div className="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <div>
-                <h2 className="text-5xl md:text-7xl font-medium tracking-tight mb-4 font-tech text-[#111]">{t.hobbiesTitle}</h2>
-                <p className="text-black/40 font-light italic text-xl">{t.hobbiesSub}</p>
-              </div>
+            <div className="mb-12">
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-2 font-tech text-[#111]">{t.hobbiesTitle}</h2>
+              <p className="text-black/40 font-light italic text-base">{t.hobbiesSub}</p>
             </div>
           </Reveal>
-          <div className="flex flex-col">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {t.hobbies.map((h: any, i: number) => (
               <Reveal key={i}>
-                <div className="group grid grid-cols-[auto_1fr] md:grid-cols-[auto_1fr_auto] items-center gap-6 md:gap-10 py-8 border-b border-black/5 hover:pl-6 transition-all duration-300">
-                  <div className="w-14 h-14 rounded-2xl bg-white border border-black/5 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors shadow-sm">
-                    {h.icon}
+                <div className="group p-5 rounded-[24px] bg-white border border-black/5 hover:shadow-lg hover:border-indigo-100 transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors shrink-0">
+                      {h.icon}
+                    </div>
+                    <div className="min-w-0">
+                      <h3 className="text-base md:text-lg font-medium tracking-tight font-tech text-[#111]">{h.name}</h3>
+                    </div>
                   </div>
-                  <h3 className="text-2xl md:text-4xl font-medium tracking-tight font-tech text-[#111]">{h.name}</h3>
-                  <p className="text-black/50 font-light italic md:text-right max-w-sm leading-relaxed">{h.desc}</p>
                 </div>
               </Reveal>
             ))}
@@ -643,30 +670,99 @@ export default function BilgePortfolio() {
       </section>
 
       { }
-      <section className="py-40 bg-white relative border-y border-black/5 shadow-[0_0_50px_rgba(0,0,0,0.02)]">
+      <section className="py-24 bg-white relative border-y border-black/5 shadow-[0_0_50px_rgba(0,0,0,0.02)]">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
-            <div className="text-center mb-24">
-              <h2 className="text-5xl md:text-7xl font-medium tracking-tight mb-6 font-tech text-[#111]">{t.languagesTitle}</h2>
+            <div className="mb-12">
+              <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-2 font-tech text-[#111]">{t.languagesTitle}</h2>
             </div>
           </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             {t.languages.map((langItem: any, i: number) => (
-              <motion.div key={i} whileHover={{ y: -10 }} className="relative group p-10 rounded-[40px] bg-[#F4F7FA] border border-black/5 overflow-hidden transition-all hover:shadow-2xl hover:bg-white">
+              <Reveal key={i}><motion.div whileHover={{ y: -5 }} className="relative group p-6 rounded-[24px] bg-[#F4F7FA] border border-black/5 overflow-hidden transition-all hover:shadow-lg hover:bg-white">
                 <div className={`absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br ${langItem.color} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500`} />
                 <div className="relative z-10">
-                  <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-black/30 block mb-2">{langItem.level}</span>
-                  <h3 className="text-3xl font-medium tracking-tight mb-4 font-tech text-[#111]">{langItem.name}</h3>
-                  <p className="text-sm text-black/40 font-light leading-relaxed opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">{langItem.info}</p>
+                  <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-black/30 block mb-2">{langItem.level}</span>
+                  <h3 className="text-xl font-medium tracking-tight mb-2 font-tech text-[#111]">{langItem.name}</h3>
+                  <p className="text-xs text-black/40 font-light leading-relaxed opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">{langItem.info}</p>
                 </div>
-                <div className="absolute bottom-10 left-10 flex gap-1">
+                <div className="absolute bottom-5 left-6 flex gap-1">
                   {[1, 2, 3, 4, 5].map((dot) => (
-                    <div key={dot} className={`w-1.5 h-1.5 rounded-full ${dot <= langItem.dots ? 'bg-indigo-600' : 'bg-black/5'}`} />
+                    <div key={dot} className={`w-1 h-1 rounded-full ${dot <= langItem.dots ? 'bg-indigo-600' : 'bg-black/5'}`} />
                   ))}
                 </div>
-              </motion.div>
+              </motion.div></Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      { }
+      <section className="py-40 bg-white border-b border-black/5 relative">
+        <div className="max-w-6xl mx-auto px-6">
+          <Reveal>
+            <div className="mb-20">
+              <span className="text-indigo-600 font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block italic">{t.recommendationRecognition}</span>
+              <h2 className="text-5xl md:text-7xl font-medium tracking-tight mb-4 text-[#111] font-tech">{t.recommendationTitle}</h2>
+              <p className="text-black/40 text-lg italic">{t.recommendationSubtitle}</p>
+            </div>
+          </Reveal>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <Reveal>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bold text-lg mb-3 text-[#111] tracking-tight">{t.qualitiesTitle}</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-4 text-black/70">
+                      <CheckCircle2 size={20} className="shrink-0 text-indigo-600 mt-0.5" />
+                      <span className="font-light leading-relaxed">{t.quality1}</span>
+                    </li>
+                    <li className="flex items-start gap-4 text-black/70">
+                      <CheckCircle2 size={20} className="shrink-0 text-indigo-600 mt-0.5" />
+                      <span className="font-light leading-relaxed">{t.quality2}</span>
+                    </li>
+                    <li className="flex items-start gap-4 text-black/70">
+                      <CheckCircle2 size={20} className="shrink-0 text-indigo-600 mt-0.5" />
+                      <span className="font-light leading-relaxed">{t.quality3}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal>
+              <div className="space-y-6">
+                <div>
+                  <h3 className="font-bold text-lg mb-3 text-[#111] tracking-tight">{t.skillsTitle}</h3>
+                  <ul className="space-y-3">
+                    <li className="flex items-start gap-4 text-black/70">
+                      <CheckCircle2 size={20} className="shrink-0 text-indigo-600 mt-0.5" />
+                      <span className="font-light leading-relaxed">{t.skill1}</span>
+                    </li>
+                    <li className="flex items-start gap-4 text-black/70">
+                      <CheckCircle2 size={20} className="shrink-0 text-indigo-600 mt-0.5" />
+                      <span className="font-light leading-relaxed">{t.skill2}</span>
+                    </li>
+                    <li className="flex items-start gap-4 text-black/70">
+                      <CheckCircle2 size={20} className="shrink-0 text-indigo-600 mt-0.5" />
+                      <span className="font-light leading-relaxed">{t.skill3}</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+
+          <Reveal>
+            <div className="mt-16 p-8 bg-indigo-50 border border-indigo-100 rounded-[32px]">
+              <p className="text-indigo-900 font-medium italic leading-relaxed">
+                "{t.recommendationQuote}"
+              </p>
+              <p className="text-indigo-700 font-semibold mt-6">— Matthias Hüller</p>
+              <p className="text-indigo-600 text-sm">Engineering Manager/Head of Business Processes, 1&1 Mail & Media Development & Technology GmbH</p>
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -750,12 +846,22 @@ function WaveSection({ img, title, year, desc, extras, reverse = false }: any) {
       <div className="flex-1 space-y-5">
         <span className="text-indigo-600 font-bold text-[10px] tracking-widest uppercase">{year}</span>
         <h3 className="text-4xl md:text-5xl font-medium tracking-tight leading-none font-tech text-[#111]">{title}</h3>
-        <p className="text-black/50 font-light italic text-xl leading-relaxed">{desc}</p>
+        <div className="text-black/50 font-light italic text-xl leading-relaxed space-y-2">{desc}</div>
         {extras && (
-          <div className="inline-block px-5 py-3 mt-4 bg-indigo-50/50 border border-indigo-100 rounded-2xl">
-            <p className="text-indigo-900/70 font-medium text-sm leading-relaxed flex items-start gap-2">
-              <Layers size={16} className="mt-0.5 shrink-0 opacity-50" />{extras}
-            </p>
+          <div className="space-y-3 mt-4">
+            {Array.isArray(extras) ? extras.map((e, i) => (
+              <div key={i} className="inline-block px-5 py-3 bg-indigo-50/50 border border-indigo-100 rounded-2xl">
+                <p className="text-indigo-900/70 font-medium text-sm leading-relaxed flex items-start gap-2">
+                  <Layers size={16} className="mt-0.5 shrink-0 opacity-50" />{e}
+                </p>
+              </div>
+            )) : (
+              <div className="inline-block px-5 py-3 bg-indigo-50/50 border border-indigo-100 rounded-2xl">
+                <p className="text-indigo-900/70 font-medium text-sm leading-relaxed flex items-start gap-2">
+                  <Layers size={16} className="mt-0.5 shrink-0 opacity-50" />{extras}
+                </p>
+              </div>
+            )}
           </div>
         )}
       </div>
