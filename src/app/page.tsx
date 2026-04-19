@@ -9,9 +9,6 @@ import {
   Music, Camera, Youtube, Database, Network, Terminal, GitMerge, ZoomIn, ZoomOut
 } from 'lucide-react';
 
-// ─────────────────────────────────────────────
-// TYPES
-// ─────────────────────────────────────────────
 interface Project {
   id: string;
   title: string;
@@ -32,9 +29,6 @@ interface Experience {
   image?: string; 
 }
 
-// ─────────────────────────────────────────────
-// ICONS
-// ─────────────────────────────────────────────
 const PROJECT_ICON_MAP: Record<string, React.ReactNode> = {
   runa: <Sword size={24} />,
   scholar: <BookOpen size={24} />,
@@ -63,9 +57,6 @@ const HOBBY_ICON_MAP: Record<string, React.ReactNode> = {
   'YouTube-Bildungskanal': <Youtube size={20} />,
 };
 
-// ─────────────────────────────────────────────
-// CONTENT
-// ─────────────────────────────────────────────
 const content = {
   en: {
     name: 'Bilge Sönmez',
@@ -80,6 +71,9 @@ const content = {
     viewDetails: 'View Details',
     viewRepo: 'View Repository',
     highlightsTitle: 'Key Engineering Highlights',
+    oneAndOneYearsBadge: '+3 Years',
+    oneAndOneTeamPhotoAlt: '1&1 team photo',
+    oneAndOneTeamPhotoCaption: 'Inside the team that shaped my engineering discipline',
 
     kitName: 'Karlsruhe Institute of Technology (KIT)',
     kabatasName: 'Kabataş Erkek High School',
@@ -102,6 +96,9 @@ const content = {
     kaMetric4: 'Persistence',
     kaGalleryTitle: 'System Interfaces',
     kaGalleryHint: 'Hover to expand gallery',
+    kaLinkEyebrow: 'Built During TECO',
+    kaLinkTitle: 'Want to see the Klausur Automator project I built at TECO?',
+    kaLinkCta: 'Click here to jump to the project showcase',
 
     thesisSectionHighlight: "Bachelor's Thesis",
     thesisSectionTitle: 'Autonomous Systems Hybrid Fusion Framework',
@@ -190,33 +187,36 @@ const content = {
     experiences: [
       {
         company: 'Fraunhofer IOSB',
-        role: 'Deep Learning & API Engineer (Student Assistant)',
+        role: 'Full-Stack Developer (Student Assistant)',
         period: 'Jan 2026 – Present',
-        tech: 'Python · Django · Docker · REST APIs',
+        tech: 'Python · Django · TypeScript · Docker · REST APIs',
+        image: '/images/fraunhofer.jpg',
         tasks: [
-          'Architected backend services for a Deep Learning tool processing video-based safety data.',
-          'Engineered highly responsive RESTful APIs to streamline data pipelines between ML models and frontend interfaces.',
-          'Containerized applications using Docker to ensure seamless deployment across isolated environments.',
+          'Contribute to the backend and frontend development of a Deep Learning annotation platform for processing video-based safety data.',
+          'Design and implement RESTful APIs and Django-based services that connect annotation workflows, data pipelines, and user-facing interfaces.',
+          'Contribute ideas for technical improvements and new platform features to strengthen the system architecture, usability, and long-term maintainability.',
         ],
-        takeaway: 'Mastered bridging the gap between raw machine learning models and production-ready, scalable APIs.',
+        takeaway: 'Strengthening my ability to turn research-oriented machine learning workflows into robust, production-ready full-stack systems.',
       },
       {
         company: '1&1 Mail & Media',
         role: 'Agile Software Engineer (Working Student)',
         period: 'Jul 2022 – Sep 2025',
         tech: 'Java · SonarQube · CI/CD · Jira',
+        image: '/images/1and1.jpg',
         tasks: [
           'Fortified enterprise systems by resolving complex SonarQube security and code quality vulnerabilities.',
           'Orchestrated CI/CD pipeline adjustments and API endpoint migrations with zero downtime.',
           'Collaborated cross-functionally within Agile sprints (Scrum) to deliver high-impact features alongside senior devs.',
         ],
-        takeaway: 'Acquired strict enterprise-grade discipline in code quality, security compliance, and CI/CD automation.',
+        takeaway: 'Worked closely within an approximately 10-person team of software engineers and testers, actively participated in recurring team ceremonies, gained a practical understanding of how strong teams operate, internalized Scrum as a working philosophy, and continuously expanded my skills through a wide range of tasks.',
       },
       {
         company: 'TECO Research Group',
         role: 'Full-Stack Developer Intern',
         period: 'May 2023 – Sep 2023',
         tech: 'Java · TypeScript · LaTeX Workflow',
+        image: '/images/teco.jpg',
         tasks: [
           'Spearheaded the "KlausurAutomator" project, automating digital exam creation from scratch.',
           'Reduced faculty workload significantly by streamlining complex document generation processes.',
@@ -287,6 +287,9 @@ const content = {
     viewDetails: 'Details ansehen',
     viewRepo: 'Repository ansehen',
     highlightsTitle: 'Technische Highlights',
+    oneAndOneYearsBadge: '+3 Jahre',
+    oneAndOneTeamPhotoAlt: '1&1 Teamfoto',
+    oneAndOneTeamPhotoCaption: 'Einblick in das Team, das meine Engineering-Disziplin geprägt hat',
 
     kitName: 'Karlsruher Institut für Technologie (KIT)',
     kabatasName: 'Kabataş Erkek Gymnasium',
@@ -308,6 +311,9 @@ const content = {
     kaMetric4: 'Persistenz',
     kaGalleryTitle: 'System-Schnittstellen',
     kaGalleryHint: 'Hovern zum Erweitern der Galerie',
+    kaLinkEyebrow: 'Entstanden bei TECO',
+    kaLinkTitle: 'Möchten Sie das Klausur-Automator-Projekt sehen, das ich bei TECO entwickelt habe?',
+    kaLinkCta: 'Hier klicken, um direkt zur Projektvorstellung zu springen',
 
     thesisSectionHighlight: 'Bachelorarbeit',
     thesisSectionTitle: 'Autonomous Systems Hybrid Fusion Framework',
@@ -395,33 +401,36 @@ const content = {
     experiences: [
       {
         company: 'Fraunhofer IOSB',
-        role: 'Deep Learning & API Engineer (HiWi)',
+        role: 'Full-Stack Developer (HiWi)',
         period: 'Jan 2026 – Heute',
-        tech: 'Python · Django · Docker · REST APIs',
+        tech: 'Python · Django · TypeScript · Docker · REST APIs',
+        image: '/images/fraunhofer.jpg',
         tasks: [
-          'Architektur von Backend-Services für ein Deep-Learning-Tool zur videobasierten Sicherheitsanalyse.',
-          'Entwicklung leistungsstarker RESTful APIs zur Optimierung von Daten-Pipelines zwischen ML-Modellen und Frontends.',
-          'Containerisierung von Anwendungen mit Docker für reibungslose Deployments in isolierten Umgebungen.',
+          'Mitarbeit an der Backend- und Frontend-Entwicklung einer Deep-Learning-Annotationsplattform zur Verarbeitung videobasierter Sicherheitsdaten.',
+          'Konzeption und Implementierung von RESTful APIs sowie Django-basierten Services zur Verbindung von Annotations-Workflows, Datenpipelines und Benutzeroberflächen.',
+          'Einbringen technischer Verbesserungsvorschläge und neuer Funktionen, um Architektur, Usability und langfristige Wartbarkeit des Systems gezielt weiterzuentwickeln.',
         ],
-        takeaway: 'Lernte, die komplexe Lücke zwischen reinen ML-Modellen und produktionsreifen, skalierbaren APIs zu schließen.',
+        takeaway: 'Ich vertiefe meine Fähigkeit, forschungsnahe Machine-Learning-Workflows in robuste, produktionsreife Full-Stack-Systeme zu überführen.',
       },
       {
         company: '1&1 Mail & Media',
         role: 'Agile Software Engineer (Werkstudentin)',
         period: 'Jul 2022 – Sep 2025',
         tech: 'Java · SonarQube · CI/CD · Jira',
+        image: '/images/1and1.jpg',
         tasks: [
           'Stärkung von Enterprise-Systemen durch Behebung komplexer SonarQube-Sicherheits- und Qualitäts-Vulnerabilities.',
           'Anpassung von CI/CD-Pipelines und Migration von API-Endpunkten ohne Ausfallzeiten.',
           'Funktionsübergreifende Zusammenarbeit in agilen Sprints (Scrum) zur Bereitstellung geschäftskritischer Features.',
         ],
-        takeaway: 'Erwerb von strikter Enterprise-Disziplin in den Bereichen Code-Qualität, Security Compliance und Automatisierung.',
+        takeaway: 'Aktive Mitarbeit in einem rund 10-köpfigen Team aus Software Engineers und Testern, regelmäßige Beteiligung an teamweiten Meetings, ein unmittelbarer Einblick in die Funktionsweise eines starken Teams, ein tiefes Verständnis der Scrum-Philosophie sowie kontinuierliche Weiterentwicklung durch vielfältige Aufgaben.',
       },
       {
         company: 'TECO Research Group',
         role: 'Full-Stack Developer Praktikantin',
         period: 'Mai 2023 – Sep 2023',
         tech: 'Java · TypeScript · LaTeX Workflow',
+        image: '/images/teco.jpg',
         tasks: [
           'Leitung der Entwicklung des "KlausurAutomators" zur Automatisierung digitaler Klausurerstellung von Grund auf.',
           'Signifikante Reduzierung des administrativen Arbeitsaufwands für Lehrkräfte durch Prozessoptimierung.',
@@ -480,9 +489,6 @@ const content = {
   },
 };
 
-// ─────────────────────────────────────────────
-// MAIN COMPONENT
-// ─────────────────────────────────────────────
 export default function BilgePortfolio() {
   const [lang, setLang] = useState<'en' | 'de'>('en');
   const [activeProject, setActiveProject] = useState<Project | null>(null);
@@ -529,10 +535,8 @@ export default function BilgePortfolio() {
 
   return (
     <div
-      className="bg-[#F4F7FA] text-[#1A1A1A] selection:bg-indigo-100 overflow-x-hidden relative"
-      style={{ fontFamily: "'DM Sans', -apple-system, sans-serif" }}
+      className="portfolio-page bg-[#F4F7FA] text-[#1A1A1A] selection:bg-indigo-100 overflow-x-hidden relative"
     >
-      {/* Terminal UI */}
       <div className="fixed bottom-6 left-6 z-[60] hidden lg:block pointer-events-none">
         <div className="bg-black/90 backdrop-blur-md text-[#00FF41] font-mono text-[10px] p-4 rounded-xl border border-white/10 shadow-2xl w-64">
           <div className="flex gap-1.5 mb-3">
@@ -557,7 +561,6 @@ export default function BilgePortfolio() {
 
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-indigo-600 origin-left z-[100]" style={{ scaleX }} />
 
-      {/* NAV */}
       <nav className="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-[#F4F7FA]/70 backdrop-blur-md border-b border-black/5">
         <span className="font-semibold text-lg tracking-tight lowercase">{t.name.replace(' ', '.')}</span>
         <button
@@ -568,7 +571,6 @@ export default function BilgePortfolio() {
         </button>
       </nav>
 
-      {/* HERO */}
       <section className="h-screen flex flex-col justify-center items-center px-6 text-center relative">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }}>
           <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white shadow-2xl bg-white">
@@ -589,7 +591,6 @@ export default function BilgePortfolio() {
         </motion.div>
       </section>
 
-      {/* EDUCATION */}
       <section id="education" className="py-20 relative">
         <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase opacity-40 mb-24 text-center">{t.eduTitle}</h2>
         <WaveSection
@@ -608,7 +609,6 @@ export default function BilgePortfolio() {
         <WaveSection img="/images/kabatas.jpg" title={t.kabatasName} year="2015 — 2020" desc={t.kabatasDesc} />
       </section>
 
-      {/* EXPERIENCE - HORIZONTAL TIMELINE */}
       <section id="experience" className="py-32 bg-white relative border-b border-black/5">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
@@ -618,26 +618,35 @@ export default function BilgePortfolio() {
           </Reveal>
 
           <div className="relative">
-            {}
             <div className="hidden lg:block absolute top-[40px] left-[16%] right-[16%] h-[2px] border-t-2 border-dashed border-indigo-200 z-0" />
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 relative z-10">
               {t.experiences.map((exp: Experience, index: number) => (
                 <Reveal key={index}>
                   <div className="relative group flex flex-col items-center lg:items-start">
-                    
-                    {/* Icon & Line Indicator */}
-                    <div className="w-20 h-20 bg-white border-[4px] border-[#F4F7FA] rounded-full flex items-center justify-center text-indigo-600 shadow-xl mb-8 relative z-10 group-hover:scale-110 group-hover:bg-indigo-50 transition-all duration-300">
-                      {EXPERIENCE_ICONS[index]}
+                    <div className="w-20 h-20 bg-white border-[4px] border-[#F4F7FA] rounded-full flex items-center justify-center shadow-xl mb-8 relative z-10 group-hover:scale-110 group-hover:bg-indigo-50 transition-all duration-300 overflow-hidden">
+                      {exp.image ? (
+                        <img 
+                          src={exp.image} 
+                          alt={`${exp.company} logo`} 
+                          className="w-full h-full object-contain p-2"
+                          onError={(e) => {
+                            e.currentTarget.style.display = 'none';
+                            e.currentTarget.parentElement?.insertAdjacentHTML('beforeend', '');
+                          }}
+                        />
+                      ) : (
+                        <div className="text-indigo-600">
+                          {EXPERIENCE_ICONS[index]}
+                        </div>
+                      )}
                     </div>
 
-                    {/* Content Card */}
                     <div className="bg-[#F4F7FA] border border-black/5 rounded-[32px] p-8 w-full text-left hover:bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full">
                       <span className="text-indigo-600 font-mono tracking-[0.2em] text-[10px] uppercase block mb-3">{exp.period}</span>
                       <h3 className="text-2xl font-bold tracking-tight mb-1 text-[#111] font-tech leading-tight">{exp.company}</h3>
                       <p className="text-black/50 italic mb-4 font-medium">{exp.role}</p>
-                      
-                      {/* Tech Stack Bubbles */}
+
                       <div className="flex flex-wrap gap-2 mb-6">
                         {exp.tech.split('·').map((t, i) => (
                           <span key={i} className="px-3 py-1 bg-white border border-black/5 text-[9px] font-bold uppercase tracking-widest text-indigo-900/60 rounded-full">
@@ -646,7 +655,32 @@ export default function BilgePortfolio() {
                         ))}
                       </div>
 
-                      {/* Concrete Tasks */}
+                      {exp.company === '1&1 Mail & Media' && (
+                        <div className="mb-8 space-y-5">
+                          <div className="relative overflow-hidden rounded-[28px] border border-amber-200 bg-gradient-to-r from-amber-100 via-orange-50 to-white px-6 py-5 shadow-lg shadow-amber-100/60">
+                            <div className="absolute right-0 top-0 h-20 w-20 translate-x-6 -translate-y-6 rounded-full bg-amber-300/30 blur-2xl" />
+                            <p className="text-3xl md:text-4xl font-semibold tracking-tight font-tech text-[#111]">{t.oneAndOneYearsBadge}</p>
+                            <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.3em] text-amber-700">1&amp;1 Mail &amp; Media</p>
+                          </div>
+
+                          <div className="overflow-hidden rounded-[28px] border border-black/5 bg-white shadow-lg shadow-black/5">
+                            <img
+                              src="/images/team.jpg"
+                              alt={t.oneAndOneTeamPhotoAlt}
+                              className="block h-48 w-full object-cover object-center"
+                              loading="eager"
+                              onError={(e) => {
+                                e.currentTarget.style.display = 'none';
+                              }}
+                            />
+                            <div className="border-t border-black/5 px-5 py-4 bg-[#FCFCFD]">
+                              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/35">1&amp;1 Team</p>
+                              <p className="mt-2 text-sm font-medium text-black/60">{t.oneAndOneTeamPhotoCaption}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
                       <ul className="space-y-3 mb-8 flex-1">
                         {exp.tasks.map((task: string, i: number) => (
                           <li key={i} className="flex items-start gap-3 text-black/60 hover:text-black/90 transition-colors text-sm">
@@ -656,7 +690,21 @@ export default function BilgePortfolio() {
                         ))}
                       </ul>
 
-                      {}
+                      {exp.company === 'TECO Research Group' && (
+                        <a
+                          href="#klausur-automator"
+                          className="group/cta relative mb-8 block overflow-hidden rounded-[28px] border border-indigo-200 bg-gradient-to-br from-indigo-600 via-indigo-500 to-cyan-500 p-6 text-white shadow-xl shadow-indigo-600/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-600/25"
+                        >
+                          <div className="absolute right-0 top-0 h-28 w-28 translate-x-8 -translate-y-8 rounded-full bg-white/10 blur-2xl" />
+                          <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-100">{t.kaLinkEyebrow}</p>
+                          <p className="max-w-xs text-lg font-semibold leading-snug tracking-tight font-tech">{t.kaLinkTitle}</p>
+                          <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-300 group-hover/cta:bg-white group-hover/cta:text-indigo-600">
+                            <span>{t.kaLinkCta}</span>
+                            <ExternalLink size={14} />
+                          </div>
+                        </a>
+                      )}
+
                       <div className="mt-auto bg-indigo-50 border border-indigo-100 rounded-2xl p-5">
                         <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-2">Key Takeaway</p>
                         <p className="text-indigo-900/80 font-medium italic text-sm leading-relaxed">"{exp.takeaway}"</p>
@@ -670,81 +718,7 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* COMPACT PROJECTS - INTERACTIVE DIRECTORY */}
-      <section id="projects" className="py-32 bg-[#F4F7FA] relative border-b border-black/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-end mb-16">
-            <h2 className="text-4xl md:text-6xl font-medium tracking-tight font-tech text-[#111]">{t.githubTitle}</h2>
-            <span className="text-black/20 font-bold text-[10px] uppercase tracking-widest hidden md:block">Select to preview</span>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 min-h-[400px]">
-            {/* Left: Interactive List */}
-            <div className="lg:col-span-5 flex flex-col gap-2">
-              {t.projects.map((project: Project, idx: number) => (
-                <button
-                  key={idx}
-                  onClick={() => setActiveProjectIndex(idx)}
-                  className={`w-full text-left px-6 py-5 rounded-2xl transition-all duration-300 border flex items-center justify-between group ${
-                    activeProjectIndex === idx 
-                      ? 'bg-white border-indigo-200 shadow-md' 
-                      : 'bg-transparent border-transparent hover:bg-white/50 hover:border-black/5'
-                  }`}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={`transition-colors ${activeProjectIndex === idx ? 'text-indigo-600' : 'text-black/40 group-hover:text-indigo-400'}`}>
-                      {PROJECT_ICON_MAP[project.id]}
-                    </div>
-                    <div>
-                      <h3 className={`font-medium font-tech tracking-tight transition-colors ${activeProjectIndex === idx ? 'text-indigo-600' : 'text-[#111]'}`}>
-                        {project.title}
-                      </h3>
-                    </div>
-                  </div>
-                  <ChevronDown size={16} className={`transition-transform duration-300 ${activeProjectIndex === idx ? '-rotate-90 text-indigo-600' : 'opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 text-black/20'}`} />
-                </button>
-              ))}
-            </div>
-
-            {/* Right: Dynamic Preview Panel */}
-            <div className="lg:col-span-7 h-full">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeProjectIndex}
-                  initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
-                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-                  exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
-                  transition={{ duration: 0.3 }}
-                  className="bg-white rounded-[40px] p-10 md:p-14 border border-black/5 shadow-xl h-full flex flex-col relative overflow-hidden"
-                >
-                  <div className="absolute -right-10 -top-10 w-40 h-40 bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
-                  
-                  <p className="text-indigo-600 font-bold text-[10px] uppercase tracking-widest mb-4">
-                    {t.projects[activeProjectIndex].tech}
-                  </p>
-                  <h3 className="text-3xl font-medium tracking-tight font-tech text-[#111] mb-6">
-                    {t.projects[activeProjectIndex].title}
-                  </h3>
-                  <p className="text-black/50 font-light italic text-lg leading-relaxed mb-10 flex-1">
-                    "{t.projects[activeProjectIndex].shortDesc}"
-                  </p>
-                  
-                  <div>
-                    <button
-                      onClick={() => setActiveProject(t.projects[activeProjectIndex])}
-                      className="px-8 py-4 bg-[#111] text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-indigo-600 transition-colors w-full md:w-auto text-center"
-                    >
-                      {t.viewDetails}
-                    </button>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/* KLAUSUR AUTOMATOR */}
-      <section className="py-40 bg-white border-b border-black/5 relative">
+      <section id="klausur-automator" className="py-40 bg-white border-b border-black/5 relative scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-7">
@@ -843,10 +817,79 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* THESIS */}
+      <section id="projects" className="py-32 bg-[#F4F7FA] relative border-b border-black/5">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex justify-between items-end mb-16">
+            <h2 className="text-4xl md:text-6xl font-medium tracking-tight font-tech text-[#111]">{t.githubTitle}</h2>
+            <span className="text-black/20 font-bold text-[10px] uppercase tracking-widest hidden md:block">Select to preview</span>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 min-h-[400px]">
+            <div className="lg:col-span-5 flex flex-col gap-2">
+              {t.projects.map((project: Project, idx: number) => (
+                <button
+                  key={idx}
+                  onClick={() => setActiveProjectIndex(idx)}
+                  className={`w-full text-left px-6 py-5 rounded-2xl transition-all duration-300 border flex items-center justify-between group ${
+                    activeProjectIndex === idx 
+                      ? 'bg-white border-indigo-200 shadow-md' 
+                      : 'bg-transparent border-transparent hover:bg-white/50 hover:border-black/5'
+                  }`}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`transition-colors ${activeProjectIndex === idx ? 'text-indigo-600' : 'text-black/40 group-hover:text-indigo-400'}`}>
+                      {PROJECT_ICON_MAP[project.id]}
+                    </div>
+                    <div>
+                      <h3 className={`font-medium font-tech tracking-tight transition-colors ${activeProjectIndex === idx ? 'text-indigo-600' : 'text-[#111]'}`}>
+                        {project.title}
+                      </h3>
+                    </div>
+                  </div>
+                  <ChevronDown size={16} className={`transition-transform duration-300 ${activeProjectIndex === idx ? '-rotate-90 text-indigo-600' : 'opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 text-black/20'}`} />
+                </button>
+              ))}
+            </div>
+
+            <div className="lg:col-span-7 h-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProjectIndex}
+                  initial={{ opacity: 0, y: 10, filter: 'blur(4px)' }}
+                  animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                  exit={{ opacity: 0, y: -10, filter: 'blur(4px)' }}
+                  transition={{ duration: 0.3 }}
+                  className="bg-white rounded-[40px] p-10 md:p-14 border border-black/5 shadow-xl h-full flex flex-col relative overflow-hidden"
+                >
+                  <div className="absolute -right-10 -top-10 w-40 h-40 bg-indigo-50 rounded-full blur-3xl opacity-50 pointer-events-none" />
+                  
+                  <p className="text-indigo-600 font-bold text-[10px] uppercase tracking-widest mb-4">
+                    {t.projects[activeProjectIndex].tech}
+                  </p>
+                  <h3 className="text-3xl font-medium tracking-tight font-tech text-[#111] mb-6">
+                    {t.projects[activeProjectIndex].title}
+                  </h3>
+                  <p className="text-black/50 font-light italic text-lg leading-relaxed mb-10 flex-1">
+                    "{t.projects[activeProjectIndex].shortDesc}"
+                  </p>
+                  
+                  <div>
+                    <button
+                      onClick={() => setActiveProject(t.projects[activeProjectIndex])}
+                      className="px-8 py-4 bg-[#111] text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-indigo-600 transition-colors w-full md:w-auto text-center"
+                    >
+                      {t.viewDetails}
+                    </button>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <ThesisArchitectureSection t={t} />
 
-      {/* COMPACT VOLUNTEERING - INTERACTIVE TABS */}
       <section id="volunteering" className="py-32 bg-white border-y border-black/5 relative overflow-hidden">
         <div className="max-w-5xl mx-auto px-6">
           <Reveal>
@@ -856,7 +899,6 @@ export default function BilgePortfolio() {
             </div>
           </Reveal>
 
-          {/* Controls (Tabs) */}
           <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
             {t.volunteering.map((v: any, i: number) => (
               <button
@@ -873,7 +915,6 @@ export default function BilgePortfolio() {
             ))}
           </div>
 
-          {/* Dynamic Content */}
           <div className="relative min-h-[250px] bg-[#F4F7FA] rounded-[40px] p-10 border border-black/5">
             <AnimatePresence mode="wait">
               <motion.div
@@ -902,7 +943,6 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* HOBBIES */}
       <section className="py-20 bg-[#F4F7FA] relative">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
@@ -926,7 +966,6 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* LANGUAGES */}
       <section id="languages" className="py-24 bg-white relative border-y border-black/5">
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
@@ -954,12 +993,10 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* COMPACT RECOMMENDATION - EXECUTIVE ENDORSEMENT */}
       <section id="recommendation" className="py-32 bg-[#0A0A0A] text-white relative border-b border-black/5 overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
-            
-            {/* Left: The Quote */}
+
             <div className="lg:col-span-7">
               <Reveal>
                 <div className="text-indigo-500 mb-8">
@@ -977,7 +1014,6 @@ export default function BilgePortfolio() {
               </Reveal>
             </div>
 
-            {/* Right: Interactive Capabilities Dashboard */}
             <div className="lg:col-span-5">
               <Reveal>
                 <div className="bg-white/5 border border-white/10 rounded-[32px] p-2 backdrop-blur-sm">
@@ -1017,7 +1053,6 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="py-32 text-center bg-[#F4F7FA] relative">
         <Reveal>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
@@ -1047,7 +1082,6 @@ export default function BilgePortfolio() {
         </Reveal>
       </footer>
 
-      {/* PROJECT MODAL */}
       <AnimatePresence>
         {activeProject && (
           <motion.div
@@ -1102,9 +1136,6 @@ export default function BilgePortfolio() {
   );
 }
 
-// ─────────────────────────────────────────────
-// SUB-COMPONENTS
-// ─────────────────────────────────────────────
 function WaveSection({ img, title, year, desc, extras }: {
   img: string;
   title: string;
@@ -1161,8 +1192,7 @@ function ThesisArchitectureSection({ t }: { t: any }) {
   return (
     <section className="py-32 bg-[#F4F7FA] border-b border-black/5 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative">
-        
-        {}
+
         <div className="mb-16 md:mb-20 pt-10">
           <Reveal>
             <span className="text-indigo-600 font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block italic">
@@ -1177,18 +1207,15 @@ function ThesisArchitectureSection({ t }: { t: any }) {
           </Reveal>
         </div>
 
-        {/* CSS GRID Yapısı (col-span'ler Reveal'ın DIŞINDA olmalı) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          
-          {/* Left: Interactive Image (Blueprint) */}
+
           <div className="lg:col-span-7 w-full relative group">
             <Reveal>
               <div 
                 onClick={() => setIsZoomed(true)}
                 className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#E8EEF5] rounded-[32px] border border-black/5 shadow-xl overflow-hidden cursor-zoom-in group"
               >
-                {/* Decorative Tech Lines */}
-                <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                <div className="blueprint-grid absolute inset-0 opacity-[0.04] pointer-events-none" />
                 
                 <img 
                   src="/images/architecture.jpg" 
@@ -1196,8 +1223,7 @@ function ThesisArchitectureSection({ t }: { t: any }) {
                   className="absolute inset-0 w-full h-full object-cover md:object-contain p-4 md:p-8 pb-24 md:pb-28 group-hover:scale-105 transition-transform duration-700 ease-out" 
                   onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000'; }} 
                 />
-                
-                {}
+
                 <div className="absolute bottom-4 left-4 right-4 bg-black/90 backdrop-blur-xl border border-white/10 rounded-[20px] p-4 flex items-center gap-4 text-white shadow-2xl transition-all duration-300 group-hover:bg-black group-hover:translate-y-[-4px]">
                   <div className="w-10 h-10 shrink-0 bg-indigo-500/20 border border-indigo-500/30 rounded-full flex items-center justify-center text-indigo-400 group-hover:scale-110 group-hover:bg-indigo-600 group-hover:text-white transition-all">
                     <ZoomIn size={20} />
@@ -1210,7 +1236,6 @@ function ThesisArchitectureSection({ t }: { t: any }) {
             </Reveal>
           </div>
 
-          {/* Right: Data Readout (Interactive Accordion) */}
           <div className="lg:col-span-5 w-full space-y-3">
             <Reveal>
               <div className="flex items-center gap-3 mb-6 px-2">
@@ -1268,7 +1293,6 @@ function ThesisArchitectureSection({ t }: { t: any }) {
           </div>
         </div>
 
-        {/* Image Zoom Modal */}
         <AnimatePresence>
           {isZoomed && (
             <motion.div
@@ -1280,6 +1304,8 @@ function ThesisArchitectureSection({ t }: { t: any }) {
             >
               <button
                 onClick={() => setIsZoomed(false)}
+                title="Close zoomed image"
+                aria-label="Close zoomed image"
                 className="absolute top-8 right-8 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-white hover:text-black transition-colors z-10"
               >
                 <X size={24} />
@@ -1296,7 +1322,7 @@ function ThesisArchitectureSection({ t }: { t: any }) {
             </motion.div>
           )}
         </AnimatePresence>
-        
+
       </div>
     </section>
   );
