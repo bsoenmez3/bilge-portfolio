@@ -1,12 +1,14 @@
 'use client';
 
+import Image from 'next/image';
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useSpring, useTransform, AnimatePresence } from 'framer-motion';
 import {
   Linkedin, Github, Rocket, ChevronDown, Binary, Mail,
-  CheckCircle, ExternalLink, Monitor, Shield, Zap,
+  CheckCircle, ExternalLink, Monitor, Shield,
   Sword, BookOpen, Layers, X, Plane, Leaf, Heart,
-  Music, Camera, Youtube, Database, Network, Terminal, GitMerge, ZoomIn, ZoomOut
+  Music, Camera, Youtube, Database, ZoomIn, GripHorizontal,
+  Users, Star, Sparkles, Award, Globe
 } from 'lucide-react';
 
 interface Project {
@@ -61,11 +63,13 @@ const content = {
   en: {
     name: 'Bilge Sönmez',
     sub: 'B.Sc. Informatik Graduate from KIT (March 2026).',
+    heroMeta: 'M.Sc. Computer Science Master student at KIT.',
     thesis: "Bachelor's Thesis: Quantitative Trustworthiness Analysis of Autonomous Systems",
     eduTitle: 'Academic Foundation',
     githubTitle: 'Technical Projects',
     expTitle: 'Professional Journey',
     footer: '© 2026 Bilge Sönmez — Karlsruhe',
+    thankYou: 'Thank you for checking my portfolio.',
     cta: "Let's Work Together!",
     swipeText: 'Swipe & Click for details',
     viewDetails: 'View Details',
@@ -73,7 +77,6 @@ const content = {
     highlightsTitle: 'Key Engineering Highlights',
     oneAndOneYearsBadge: '+3 Years',
     oneAndOneTeamPhotoAlt: '1&1 team photo',
-    oneAndOneTeamPhotoCaption: 'Inside the team that shaped my engineering discipline',
 
     kitName: 'Karlsruhe Institute of Technology (KIT)',
     kabatasName: 'Kabataş Erkek High School',
@@ -163,20 +166,26 @@ const content = {
     kitBachelorExtras: 'Supplementary subjects in Business Administration (BWL): Management and Marketing, Consumer Behavior, Finance and Accounting.',
     kitMasterYear: 'April 2026 — Present',
     kitMasterDesc: 'Advanced study in Computer Science with specialization in autonomous systems and applied machine learning.',
-    kitMasterExtras: "Building on bachelor's foundation with focus on distributed systems, safety-critical software, and AI applications.",
+    kitMasterExtras: '',
     kabatasDesc: 'Graduated top 0.03% nationally. Developed foundation in leadership and analytical thinking. 1 year German language prep program (2015—2016) before starting at KIT.',
     
     languagesTitle: 'Communication Stack',
     languages: [
       { name: 'Turkish', level: 'Native', info: 'Mother tongue, cultural root.', color: 'from-red-500 to-orange-500', dots: 5 },
-      { name: 'German', level: 'B2 - C1 Proficiency', info: 'Academic & business fluency.', color: 'from-amber-400 to-yellow-600', dots: 4 },
       { name: 'English', level: 'B2 - C1 Proficiency', info: 'Global tech standard.', color: 'from-blue-500 to-indigo-600', dots: 4 },
+      { name: 'German', level: 'B2 - C1 Proficiency', info: 'Academic & business fluency.', color: 'from-amber-400 to-yellow-600', dots: 4 },
       { name: 'Spanish', level: 'Elementary', info: 'Learning to sing in Spanish :)', color: 'from-emerald-400 to-teal-500', dots: 1 },
     ],
 
     recommendationTitle: "Executive Endorsement",
     recommendationAuthor: "Matthias Hüller",
     recommendationRole: "Engineering Manager @ 1&1 Mail & Media",
+    recommendationNoteLabel: 'Letter of Recommendation',
+    recommendationHint: 'Open a note on the right to read each focus area.',
+    recommendationPanelLabel: 'Reading Notes',
+    recommendationExpandClosed: 'Click to expand',
+    recommendationExpandOpen: 'Expanded',
+    terminalDragHint: 'Drag panel',
     recommendationQuote: "Bilge combines technical talent with a professional attitude and strong interpersonal skills. She has consistently impressed with her dedication, intelligence, and positive attitude. I have no doubt that she will be a valuable asset to any team fortunate enough to have her.",
     recommendationTabs: [
       { id: "ethic", label: "Work Ethic", content: "Consistent dedication, intelligence, and positive attitude. Exceptional contributions despite part-time work schedule." },
@@ -200,16 +209,17 @@ const content = {
       },
       {
         company: '1&1 Mail & Media',
-        role: 'Agile Software Engineer (Working Student)',
+        role: 'Working Student',
         period: 'Jul 2022 – Sep 2025',
         tech: 'Java · SonarQube · CI/CD · Jira',
         image: '/images/1and1.jpg',
         tasks: [
-          'Fortified enterprise systems by resolving complex SonarQube security and code quality vulnerabilities.',
-          'Orchestrated CI/CD pipeline adjustments and API endpoint migrations with zero downtime.',
-          'Collaborated cross-functionally within Agile sprints (Scrum) to deliver high-impact features alongside senior devs.',
+          'Implement security requirements in software applications and resolve code quality issues with SonarQube in line with internal security processes.',
+          'Support infrastructural changes, CI/CD pipeline adjustments and endpoint migrations.',
+          'Update technical dependencies in test automation projects and implement automated test cases for strong coverage.',
+          'Create and maintain test plans prepare clear test reports.',
         ],
-        takeaway: 'Worked closely within an approximately 10-person team of software engineers and testers, actively participated in recurring team ceremonies, gained a practical understanding of how strong teams operate, internalized Scrum as a working philosophy, and continuously expanded my skills through a wide range of tasks.',
+        takeaway: 'Regularly participated in Scrum rituals, especially daily stand-ups and retrospectives, alongside security, testing, and delivery workflows.',
       },
       {
         company: 'TECO Research Group',
@@ -218,7 +228,7 @@ const content = {
         tech: 'Java · TypeScript · LaTeX Workflow',
         image: '/images/teco.jpg',
         tasks: [
-          'Spearheaded the "KlausurAutomator" project, automating digital exam creation from scratch.',
+          'Was part of the "KlausurAutomator" project, helping automate digital exam creation.',
           'Reduced faculty workload significantly by streamlining complex document generation processes.',
           'Drove full-stack development within a fast-paced 5-person team, taking ownership of critical UI/UX features.',
         ],
@@ -277,11 +287,13 @@ const content = {
   de: {
     name: 'Bilge Sönmez',
     sub: 'B.Sc. Informatik Absolventin am KIT (März 2026).',
+    heroMeta: 'M.Sc. Informatik Masterstudentin am KIT.',
     thesis: 'Bachelorarbeit: Quantitative Vertrauenswürdigkeitsanalyse autonomer Systeme',
     eduTitle: 'Akademischer Hintergrund',
     githubTitle: 'Technische Projekte',
     expTitle: 'Beruflicher Werdegang',
     footer: '© 2026 Bilge Sönmez — Karlsruhe',
+    thankYou: 'Thank you for checking my portfolio.',
     cta: 'Lassen Sie uns zusammenarbeiten!',
     swipeText: 'Wischen & Klicken für Details',
     viewDetails: 'Details ansehen',
@@ -289,7 +301,6 @@ const content = {
     highlightsTitle: 'Technische Highlights',
     oneAndOneYearsBadge: '+3 Jahre',
     oneAndOneTeamPhotoAlt: '1&1 Teamfoto',
-    oneAndOneTeamPhotoCaption: 'Einblick in das Team, das meine Engineering-Disziplin geprägt hat',
 
     kitName: 'Karlsruher Institut für Technologie (KIT)',
     kabatasName: 'Kabataş Erkek Gymnasium',
@@ -377,20 +388,26 @@ const content = {
     kitBachelorExtras: 'Ergänzungsfächer in BWL: Management und Marketing, Konsumentenverhalten, Finanzierung und Rechnungswesen.',
     kitMasterYear: 'April 2026 — Heute',
     kitMasterDesc: 'Vertieftes Studium der Informatik mit Spezialisierung auf autonome Systeme und angewandtes Machine Learning.',
-    kitMasterExtras: 'Aufbauend auf dem Bachelor-Fundament mit Fokus auf verteilte Systeme, sicherheitskritische Software und KI-Anwendungen.',
+    kitMasterExtras: '',
     kabatasDesc: 'Abschluss unter den besten 0,03% landesweit. Fundament in Führung und analytischem Denken aufgebaut. 1 Jahr Deutschkurse (2015—2016) vor dem KIT-Studium.',
     
     languagesTitle: 'Sprachkompetenz',
     languages: [
       { name: 'Türkisch', level: 'Muttersprache', info: 'Muttersprache, kulturelle Wurzel.', color: 'from-red-500 to-orange-500', dots: 5 },
-      { name: 'Deutsch', level: 'B2 - C1 Niveau', info: 'Akademische & geschäftliche Sicherheit.', color: 'from-amber-400 to-yellow-600', dots: 4 },
       { name: 'Englisch', level: 'B2 - C1 Niveau', info: 'Globaler Tech-Standard.', color: 'from-blue-500 to-indigo-600', dots: 4 },
+      { name: 'Deutsch', level: 'B2 - C1 Niveau', info: 'Akademische & geschäftliche Sicherheit.', color: 'from-amber-400 to-yellow-600', dots: 4 },
       { name: 'Spanisch', level: 'Grundkenntnisse', info: 'Lerne gerade auf Spanisch zu singen :)', color: 'from-emerald-400 to-teal-500', dots: 1 },
     ],
 
     recommendationTitle: "Executive Endorsement",
     recommendationAuthor: "Matthias Hüller",
     recommendationRole: "Engineering Manager @ 1&1 Mail & Media",
+    recommendationNoteLabel: 'Empfehlungsschreiben',
+    recommendationHint: 'Rechts eine Karte aufklappen, um den jeweiligen Fokus zu lesen.',
+    recommendationPanelLabel: 'Lesenotizen',
+    recommendationExpandClosed: 'Zum Aufklappen klicken',
+    recommendationExpandOpen: 'Geoeffnet',
+    terminalDragHint: 'Panel ziehen',
     recommendationQuote: "Bilge verbindet technisches Talent mit einer professionellen Haltung und starken zwischenmenschlichen Fähigkeiten. Sie hat mich und mein Team mit ihrer Hingabe, Intelligenz und positiven Einstellung konsistent beeindruckt.",
     recommendationTabs: [
       { id: "ethic", label: "Arbeitsethik", content: "Konsistente Hingabe, Intelligenz und positive Einstellung. Außergewöhnliche Beiträge trotz Teilzeitarbeit." },
@@ -414,16 +431,17 @@ const content = {
       },
       {
         company: '1&1 Mail & Media',
-        role: 'Agile Software Engineer (Werkstudentin)',
+        role: 'Werkstudentin',
         period: 'Jul 2022 – Sep 2025',
         tech: 'Java · SonarQube · CI/CD · Jira',
         image: '/images/1and1.jpg',
         tasks: [
-          'Stärkung von Enterprise-Systemen durch Behebung komplexer SonarQube-Sicherheits- und Qualitäts-Vulnerabilities.',
-          'Anpassung von CI/CD-Pipelines und Migration von API-Endpunkten ohne Ausfallzeiten.',
-          'Funktionsübergreifende Zusammenarbeit in agilen Sprints (Scrum) zur Bereitstellung geschäftskritischer Features.',
+          'Umsetzung von Sicherheitsanforderungen in Softwareanwendungen und Behebung von Codequalitaetsproblemen mit SonarQube gemaess interner Security-Prozesse.',
+          'Unterstuetzung infrastruktureller Aenderungen, einschliesslich Anpassungen an CI/CD-Pipelines und Endpoint-Migrationen.',
+          'Aktualisierung technischer Abhaengigkeiten in Testautomatisierungsprojekten sowie Implementierung automatisierter Testfaelle fuer starke Testabdeckung.',
+          'Erstellung und Pflege von Testplaenen, Vorbereitung klarer Testberichte.',
         ],
-        takeaway: 'Aktive Mitarbeit in einem rund 10-köpfigen Team aus Software Engineers und Testern, regelmäßige Beteiligung an teamweiten Meetings, ein unmittelbarer Einblick in die Funktionsweise eines starken Teams, ein tiefes Verständnis der Scrum-Philosophie sowie kontinuierliche Weiterentwicklung durch vielfältige Aufgaben.',
+        takeaway: 'Regelmaessige Teilnahme an Scrum-Ritualen, insbesondere Dailys und Retrospektiven, neben Security-, Testing- und Delivery-Aufgaben.',
       },
       {
         company: 'TECO Research Group',
@@ -432,7 +450,7 @@ const content = {
         tech: 'Java · TypeScript · LaTeX Workflow',
         image: '/images/teco.jpg',
         tasks: [
-          'Leitung der Entwicklung des "KlausurAutomators" zur Automatisierung digitaler Klausurerstellung von Grund auf.',
+          'Mitarbeit am "KlausurAutomator" zur Automatisierung digitaler Klausurerstellung.',
           'Signifikante Reduzierung des administrativen Arbeitsaufwands für Lehrkräfte durch Prozessoptimierung.',
           'Full-Stack-Entwicklung in einem agilen 5-köpfigen Team mit Verantwortung für kritische UI-Features.',
         ],
@@ -489,22 +507,35 @@ const content = {
   },
 };
 
+type PortfolioLocale = keyof typeof content;
+type PortfolioContent = (typeof content)[PortfolioLocale];
+type RecommendationTab = PortfolioContent['recommendationTabs'][number];
+
+const LANGUAGE_BAR_WIDTH_CLASS_MAP: Record<number, string> = {
+  1: 'w-1/5',
+  2: 'w-2/5',
+  3: 'w-3/5',
+  4: 'w-4/5',
+  5: 'w-full',
+};
+
 export default function BilgePortfolio() {
-  const [lang, setLang] = useState<'en' | 'de'>('en');
+  const [lang, setLang] = useState<PortfolioLocale>('en');
   const [activeProject, setActiveProject] = useState<Project | null>(null);
   const [currentSection, setCurrentSection] = useState('HOME');
-  const [time, setTime] = useState<string>(''); 
+  const [time, setTime] = useState<string>(() => new Date().toLocaleTimeString());
   
   const [activeProjectIndex, setActiveProjectIndex] = useState(0);
-  const [activeVolunteerIndex, setActiveVolunteerIndex] = useState(0);
-  const [activeRecTab, setActiveRecTab] = useState(0);
+  const [activeRecTab, setActiveRecTab] = useState<number | null>(null);
+  const [hoveredRecTab, setHoveredRecTab] = useState<number | null>(null);
 
   const t = content[lang];
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const heroGridY = useTransform(scrollYProgress, [0, 0.22], [0, 68]);
+  const heroGlowY = useTransform(scrollYProgress, [0, 0.22], [0, 38]);
 
   useEffect(() => {
-    setTime(new Date().toLocaleTimeString());
     const interval = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
     }, 1000);
@@ -518,7 +549,7 @@ export default function BilgePortfolio() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const ids = ['education', 'experience', 'projects', 'recommendation', 'volunteering', 'languages'];
+      const ids = ['education', 'experience', 'projects', 'volunteering', 'personality-stack', 'recommendation'];
       let activeId = 'HOME';
       for (const id of ids) {
         const el = document.getElementById(id);
@@ -535,156 +566,205 @@ export default function BilgePortfolio() {
 
   return (
     <div
-      className="portfolio-page bg-[#F4F7FA] text-[#1A1A1A] selection:bg-indigo-100 overflow-x-hidden relative"
+      className="portfolio-page bg-[linear-gradient(180deg,#fafdff_0%,#f1f6fc_8%,#e4edf7_18%,#cfdbea_30%,#9eafc4_44%,#65748b_58%,#435062_72%,#313946_84%,#272e37_100%)] text-[#1A1A1A] selection:bg-indigo-100 overflow-x-hidden relative"
     >
-      <div className="fixed bottom-6 left-6 z-[60] hidden lg:block pointer-events-none">
-        <div className="bg-black/90 backdrop-blur-md text-[#00FF41] font-mono text-[10px] p-4 rounded-xl border border-white/10 shadow-2xl w-64">
-          <div className="flex gap-1.5 mb-3">
-            <div className="w-2 h-2 rounded-full bg-red-500/40" />
-            <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
-            <div className="w-2 h-2 rounded-full bg-green-500/40" />
+      <div className="pointer-events-none absolute inset-0 opacity-[0.055] [background-image:linear-gradient(rgba(17,24,39,0.14)_1px,transparent_1px),linear-gradient(90deg,rgba(17,24,39,0.14)_1px,transparent_1px)] [background-size:30px_30px]" />
+      <motion.div
+        drag
+        dragMomentum={false}
+        dragElastic={0.08}
+        whileDrag={{ scale: 1.02, cursor: 'grabbing' }}
+        className="fixed bottom-6 left-6 z-[60] hidden lg:block pointer-events-auto cursor-grab"
+      >
+        <div className="bg-black/90 backdrop-blur-md text-[#00FF41] font-mono text-[10px] p-4 rounded-xl border border-white/10 shadow-2xl w-64 select-none">
+          <div className="flex items-center justify-between gap-3 mb-3 pb-2 border-b border-white/10">
+            <div className="flex gap-1.5">
+              <div className="w-2 h-2 rounded-full bg-red-500/40" />
+              <div className="w-2 h-2 rounded-full bg-yellow-500/40" />
+              <div className="w-2 h-2 rounded-full bg-green-500/40" />
+            </div>
+            <div className="flex items-center gap-2 text-white/35 uppercase tracking-[0.22em] text-[8px]">
+              <GripHorizontal size={12} />
+              <span>{t.terminalDragHint}</span>
+            </div>
           </div>
-          <div className="space-y-1">
+          <div className="space-y-1 pointer-events-none">
             <p className="opacity-40">[{time || '...'}]</p>
             <p className="text-indigo-400 font-bold animate-pulse">&gt; {currentSection}</p>
             <p className="text-white/40">&gt; LANG: {lang.toUpperCase()}</p>
             <p className="text-white/20 truncate">&gt; KIT_KARLSRUHE_CONNECTED</p>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
         .font-serif-custom { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 400; }
         .font-tech { font-family: 'Inter', sans-serif; font-weight: 500; letter-spacing: -0.02em; }
+        .font-label { font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 0.22em; }
       `}</style>
 
       <motion.div className="fixed top-0 left-0 right-0 h-1 bg-indigo-600 origin-left z-[100]" style={{ scaleX }} />
 
-      <nav className="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-[#F4F7FA]/70 backdrop-blur-md border-b border-black/5">
-        <span className="font-semibold text-lg tracking-tight lowercase">{t.name.replace(' ', '.')}</span>
+      <nav className="fixed top-0 w-full z-50 px-8 py-5 flex justify-between items-center bg-[linear-gradient(180deg,rgba(255,255,255,0.72)_0%,rgba(244,248,253,0.52)_100%)] backdrop-blur-xl border-b border-white/35 shadow-[0_8px_30px_rgba(148,163,184,0.14)]">
+        <span className="font-semibold text-lg tracking-tight lowercase text-slate-900/90">{t.name.replace(' ', '.')}</span>
         <button
           onClick={() => setLang(lang === 'en' ? 'de' : 'en')}
-          className="text-[10px] font-bold tracking-[0.2em] border border-black/10 px-4 py-2 rounded-full hover:bg-black hover:text-white transition-all uppercase"
+          className="text-[10px] font-bold tracking-[0.2em] border border-slate-900/10 bg-white/45 text-slate-800 px-4 py-2 rounded-full hover:bg-slate-950 hover:text-white transition-all uppercase shadow-sm"
         >
           {lang}
         </button>
       </nav>
 
-      <section className="h-screen flex flex-col justify-center items-center px-6 text-center relative">
+      <section className="h-screen flex flex-col justify-center items-center px-6 text-center relative overflow-hidden">
+        <motion.div
+          className="absolute inset-0 opacity-[0.12] pointer-events-none"
+          style={{ y: heroGridY }}
+        >
+          <div className="absolute inset-0 [background-image:linear-gradient(rgba(37,99,235,0.14)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.14)_1px,transparent_1px)] [background-size:52px_52px]" />
+        </motion.div>
+        <motion.div
+          className="absolute inset-0 pointer-events-none"
+          style={{ y: heroGlowY }}
+        >
+          <div className="absolute left-1/2 top-[18%] h-64 w-64 -translate-x-1/2 rounded-full bg-indigo-400/20 blur-3xl" />
+          <div className="absolute right-[18%] top-[28%] h-48 w-48 rounded-full bg-cyan-300/12 blur-3xl" />
+        </motion.div>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2 }}>
-          <div className="w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white shadow-2xl bg-white">
-            <img
+          <div className="relative w-32 h-32 md:w-40 md:h-40 mx-auto mb-8 rounded-full overflow-hidden border-4 border-white shadow-2xl bg-white">
+            <Image
               src="/images/profile.jpg"
               alt={t.name}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.currentTarget.src = 'https://ui-avatars.com/api/?name=Bilge+Sonmez&background=6366f1&color=fff';
-              }}
+              fill
+              priority
+              sizes="(min-width: 768px) 160px, 128px"
+              className="object-cover"
             />
           </div>
           <h1 className="text-6xl md:text-[9rem] tracking-tight mb-6 text-[#111] font-tech font-semibold">{t.name}</h1>
-          <p className="text-lg md:text-2xl text-black/40 font-light max-w-2xl mx-auto italic leading-relaxed">{t.sub}</p>
+          <p className="text-[1.02rem] md:text-[1.35rem] text-black/58 font-light max-w-2xl mx-auto leading-[1.75]">{t.sub}</p>
+          <p className="mt-2 text-[1.02rem] md:text-[1.35rem] text-black/58 font-light max-w-2xl mx-auto leading-[1.75]">{t.heroMeta}</p>
         </motion.div>
         <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 2 }} className="absolute bottom-10 opacity-20">
           <ChevronDown size={24} />
         </motion.div>
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent via-[rgba(231,239,247,0.68)] to-[rgba(241,246,252,0.96)] pointer-events-none" />
       </section>
 
-      <section id="education" className="py-20 relative">
-        <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase opacity-40 mb-24 text-center">{t.eduTitle}</h2>
+      <section id="education" className="py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(rgba(17,24,39,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(17,24,39,0.12)_1px,transparent_1px)] [background-size:30px_30px] pointer-events-none" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[rgba(241,246,252,0.84)] via-[rgba(241,246,252,0.42)] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-[rgba(126,141,161,0.06)] to-[rgba(126,141,161,0.08)] pointer-events-none" />
+        <h2 className="text-[10px] font-bold tracking-[0.4em] uppercase text-slate-700/70 mb-24 text-center">{t.eduTitle}</h2>
         <WaveSection
           img="/images/kit.jpg"
           title={t.kitName}
           desc={
             <>
               <div className="font-semibold">{t.kitMasterDegree}</div>
-              <div className="text-xs text-indigo-600 font-mono tracking-[0.2em] uppercase">{t.kitMasterYear}</div>
+              <div className="text-xs text-indigo-600 font-label uppercase">{t.kitMasterYear}</div>
               <div className="font-semibold mt-4">{t.kitBachelorDegree}</div>
-              <div className="text-xs text-indigo-600 font-mono tracking-[0.2em] uppercase">{t.kitBachelorYear}</div>
+              <div className="text-xs text-indigo-600 font-label uppercase">{t.kitBachelorYear}</div>
             </>
           }
-          extras={[t.kitMasterExtras, t.kitBachelorExtras]}
+          extras={[t.kitMasterExtras, t.kitBachelorExtras].filter(Boolean)}
         />
         <WaveSection img="/images/kabatas.jpg" title={t.kabatasName} year="2015 — 2020" desc={t.kabatasDesc} />
       </section>
 
-      <section id="experience" className="py-32 bg-white relative border-b border-black/5">
+      <section id="experience" className="py-32 relative overflow-hidden bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(126,141,161,0.08)_28%,rgba(108,122,141,0.14)_100%)] backdrop-blur-[2px]">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-white/10 via-white/4 to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-[rgba(108,122,141,0.08)] to-[rgba(108,122,141,0.14)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6">
           <Reveal>
             <div className="text-center mb-24">
-              <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-4 font-tech text-[#111]">{t.expTitle}</h2>
+              <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-4 font-tech text-slate-950">{t.expTitle}</h2>
             </div>
           </Reveal>
 
           <div className="relative">
-            <div className="hidden lg:block absolute top-[40px] left-[16%] right-[16%] h-[2px] border-t-2 border-dashed border-indigo-200 z-0" />
+            <div className="hidden lg:block absolute top-[40px] left-[16%] right-[16%] h-px border-t border-dashed border-indigo-200/70 z-0" />
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-8 relative z-10 items-start">
               {t.experiences.map((exp: Experience, index: number) => (
                 <Reveal key={index}>
-                  <div className="relative group flex flex-col items-center lg:items-start">
-                    <div className="w-20 h-20 bg-white border-[4px] border-[#F4F7FA] rounded-full flex items-center justify-center shadow-xl mb-8 relative z-10 group-hover:scale-110 group-hover:bg-indigo-50 transition-all duration-300 overflow-hidden">
-                      {exp.image ? (
-                        <img 
-                          src={exp.image} 
-                          alt={`${exp.company} logo`} 
-                          className="w-full h-full object-contain p-2"
-                          onError={(e) => {
-                            e.currentTarget.style.display = 'none';
-                            e.currentTarget.parentElement?.insertAdjacentHTML('beforeend', '');
-                          }}
-                        />
-                      ) : (
-                        <div className="text-indigo-600">
-                          {EXPERIENCE_ICONS[index]}
-                        </div>
-                      )}
+                  {(() => {
+                    const glowClass = exp.company === 'Fraunhofer IOSB'
+                      ? 'group-hover:bg-cyan-400/14'
+                      : exp.company === '1&1 Mail & Media'
+                        ? 'group-hover:bg-amber-400/12'
+                        : 'group-hover:bg-indigo-500/14';
+                    const cardHoverClass = exp.company === 'Fraunhofer IOSB'
+                      ? 'hover:shadow-[0_24px_64px_rgba(34,211,238,0.18)]'
+                      : exp.company === '1&1 Mail & Media'
+                        ? 'hover:shadow-[0_24px_64px_rgba(251,191,36,0.16)]'
+                        : 'hover:shadow-[0_24px_64px_rgba(79,70,229,0.2)]';
+                    const radialGlowClass = exp.company === 'Fraunhofer IOSB'
+                      ? 'group-hover:opacity-100 bg-[radial-gradient(circle_at_top_right,rgba(34,211,238,0.18),transparent_38%)]'
+                      : exp.company === '1&1 Mail & Media'
+                        ? 'group-hover:opacity-100 bg-[radial-gradient(circle_at_top_right,rgba(251,191,36,0.18),transparent_38%)]'
+                        : 'group-hover:opacity-100 bg-[radial-gradient(circle_at_top_right,rgba(129,140,248,0.16),transparent_38%)]';
+
+                    return (
+                  <div className="relative group flex flex-col items-center lg:items-start self-start">
+                    <div className={`absolute inset-x-4 top-24 bottom-4 rounded-[36px] bg-transparent blur-3xl transition-all duration-500 opacity-0 pointer-events-none ${glowClass}`} />
+                    <div className="relative z-10 flex justify-center lg:justify-start mb-8">
+                      <div className="w-20 h-20 bg-white/90 border-[4px] border-slate-200/80 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:bg-indigo-50 transition-all duration-300 overflow-hidden">
+                        {exp.image ? (
+                          <Image
+                            src={exp.image} 
+                            alt={`${exp.company} logo`} 
+                            fill
+                            sizes="80px"
+                            className="object-contain p-2 rounded-full"
+                          />
+                        ) : (
+                          <div className="text-indigo-600">
+                            {EXPERIENCE_ICONS[index]}
+                          </div>
+                        )}
+                      </div>
                     </div>
 
-                    <div className="bg-[#F4F7FA] border border-black/5 rounded-[32px] p-8 w-full text-left hover:bg-white hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full">
-                      <span className="text-indigo-600 font-mono tracking-[0.2em] text-[10px] uppercase block mb-3">{exp.period}</span>
-                      <h3 className="text-2xl font-bold tracking-tight mb-1 text-[#111] font-tech leading-tight">{exp.company}</h3>
-                      <p className="text-black/50 italic mb-4 font-medium">{exp.role}</p>
+                    <div className={`relative z-10 bg-[linear-gradient(180deg,rgba(15,23,42,0.94)_0%,rgba(10,15,26,0.98)_100%)] border border-white/8 rounded-[32px] p-7 w-full text-left hover:bg-[linear-gradient(180deg,rgba(26,38,66,0.98)_0%,rgba(10,15,26,1)_100%)] ${cardHoverClass} transition-all duration-500 hover:-translate-y-1 flex flex-col text-white overflow-hidden`}>
+                      <div className={`absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none ${radialGlowClass}`} />
+                      <span className="text-indigo-300 font-label text-[10px] uppercase block mb-3">{exp.period}</span>
+                      <h3 className="text-2xl font-bold tracking-tight mb-1 text-white font-tech leading-tight">{exp.company}</h3>
+                      <p className="text-white/70 mb-4 font-medium">{exp.role}</p>
 
-                      <div className="flex flex-wrap gap-2 mb-6">
+                      <div className="flex flex-wrap gap-2 mb-5">
                         {exp.tech.split('·').map((t, i) => (
-                          <span key={i} className="px-3 py-1 bg-white border border-black/5 text-[9px] font-bold uppercase tracking-widest text-indigo-900/60 rounded-full">
+                          <span key={i} className="px-3 py-1 bg-white/8 border border-white/10 text-[9px] font-bold uppercase tracking-widest text-indigo-100/80 rounded-full">
                             {t.trim()}
                           </span>
                         ))}
                       </div>
 
                       {exp.company === '1&1 Mail & Media' && (
-                        <div className="mb-8 space-y-5">
-                          <div className="relative overflow-hidden rounded-[28px] border border-amber-200 bg-gradient-to-r from-amber-100 via-orange-50 to-white px-6 py-5 shadow-lg shadow-amber-100/60">
+                        <div className="mb-5 space-y-3">
+                          <div className="relative overflow-hidden rounded-[28px] border border-amber-200 bg-gradient-to-r from-amber-100 via-orange-50 to-white px-6 py-4 shadow-lg shadow-amber-100/60">
                             <div className="absolute right-0 top-0 h-20 w-20 translate-x-6 -translate-y-6 rounded-full bg-amber-300/30 blur-2xl" />
-                            <p className="text-3xl md:text-4xl font-semibold tracking-tight font-tech text-[#111]">{t.oneAndOneYearsBadge}</p>
-                            <p className="mt-2 text-[10px] font-bold uppercase tracking-[0.3em] text-amber-700">1&amp;1 Mail &amp; Media</p>
+                            <p className="text-[1.7rem] md:text-[2rem] font-semibold tracking-tight font-tech text-[#111]">{t.oneAndOneYearsBadge}</p>
                           </div>
 
-                          <div className="overflow-hidden rounded-[28px] border border-black/5 bg-white shadow-lg shadow-black/5">
-                            <img
-                              src="/images/team.jpg"
-                              alt={t.oneAndOneTeamPhotoAlt}
-                              className="block h-48 w-full object-cover object-center"
-                              loading="eager"
-                              onError={(e) => {
-                                e.currentTarget.style.display = 'none';
-                              }}
-                            />
-                            <div className="border-t border-black/5 px-5 py-4 bg-[#FCFCFD]">
-                              <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/35">1&amp;1 Team</p>
-                              <p className="mt-2 text-sm font-medium text-black/60">{t.oneAndOneTeamPhotoCaption}</p>
+                          <div className="overflow-hidden rounded-[28px] border border-white/10 bg-white/95 shadow-lg shadow-black/20">
+                            <div className="relative h-44 w-full">
+                              <Image
+                                src="/images/team.jpg"
+                                alt={t.oneAndOneTeamPhotoAlt}
+                                fill
+                                sizes="(min-width: 1024px) 33vw, 100vw"
+                                className="object-cover object-center"
+                              />
                             </div>
                           </div>
                         </div>
                       )}
 
-                      <ul className="space-y-3 mb-8 flex-1">
+                      <ul className="space-y-3 mb-6">
                         {exp.tasks.map((task: string, i: number) => (
-                          <li key={i} className="flex items-start gap-3 text-black/60 hover:text-black/90 transition-colors text-sm">
-                            <CheckCircle size={16} className="mt-0.5 shrink-0 text-indigo-400" />
+                          <li key={i} className="flex items-start gap-3 text-white/72 hover:text-white transition-colors text-sm">
+                            <CheckCircle size={16} className="mt-0.5 shrink-0 text-indigo-300" />
                             <span className="font-light leading-relaxed">{task}</span>
                           </li>
                         ))}
@@ -693,24 +773,26 @@ export default function BilgePortfolio() {
                       {exp.company === 'TECO Research Group' && (
                         <a
                           href="#klausur-automator"
-                          className="group/cta relative mb-8 block overflow-hidden rounded-[28px] border border-indigo-200 bg-gradient-to-br from-indigo-600 via-indigo-500 to-cyan-500 p-6 text-white shadow-xl shadow-indigo-600/15 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-indigo-600/25"
+                          className="group/cta relative mb-6 block overflow-hidden rounded-[28px] border border-sky-200/40 bg-gradient-to-br from-slate-700 via-slate-600 to-sky-600 p-6 text-white shadow-xl shadow-slate-900/20 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/25"
                         >
                           <div className="absolute right-0 top-0 h-28 w-28 translate-x-8 -translate-y-8 rounded-full bg-white/10 blur-2xl" />
-                          <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-indigo-100">{t.kaLinkEyebrow}</p>
+                          <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-sky-100/85">{t.kaLinkEyebrow}</p>
                           <p className="max-w-xs text-lg font-semibold leading-snug tracking-tight font-tech">{t.kaLinkTitle}</p>
-                          <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-300 group-hover/cta:bg-white group-hover/cta:text-indigo-600">
+                          <div className="mt-5 inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-white transition-all duration-300 group-hover/cta:bg-white group-hover/cta:text-slate-700">
                             <span>{t.kaLinkCta}</span>
                             <ExternalLink size={14} />
                           </div>
                         </a>
                       )}
 
-                      <div className="mt-auto bg-indigo-50 border border-indigo-100 rounded-2xl p-5">
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-2">Key Takeaway</p>
-                        <p className="text-indigo-900/80 font-medium italic text-sm leading-relaxed">"{exp.takeaway}"</p>
+                      <div className="bg-white/6 border border-white/10 rounded-2xl p-5">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-300 mb-2">Key Takeaway</p>
+                        <p className="text-white/84 font-medium italic text-sm leading-relaxed">&quot;{exp.takeaway}&quot;</p>
                       </div>
                     </div>
                   </div>
+                    );
+                  })()}
                 </Reveal>
               ))}
             </div>
@@ -718,16 +800,18 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      <section id="klausur-automator" className="py-40 bg-white border-b border-black/5 relative scroll-mt-24">
+      <section id="klausur-automator" className="py-40 relative scroll-mt-24 overflow-hidden bg-[linear-gradient(180deg,rgba(108,122,141,0.14)_0%,rgba(141,155,174,0.12)_36%,rgba(126,140,160,0.16)_100%)] backdrop-blur-[2px]">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[rgba(108,122,141,0.12)] via-[rgba(108,122,141,0.05)] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-[rgba(126,140,160,0.08)] to-[rgba(126,140,160,0.16)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
             <div className="lg:col-span-7">
               <Reveal>
-                <span className="text-indigo-600 font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block italic">{t.klausurHighlight}</span>
+                <span className="text-indigo-700 font-label text-[10px] uppercase mb-4 block">{t.klausurHighlight}</span>
                 <h2 className="text-5xl md:text-7xl font-semibold tracking-tight mb-8 uppercase leading-none font-tech text-[#111]">
                   Klausur<br />Automator
                 </h2>
-                <p className="text-lg text-black/60 font-light leading-relaxed mb-12 italic">{t.kaDesc}</p>
+                  <p className="text-[1rem] md:text-[1.08rem] text-slate-800/74 font-light leading-[1.8] mb-12 max-w-3xl">{t.kaDesc}</p>
               </Reveal>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {[
@@ -736,10 +820,10 @@ export default function BilgePortfolio() {
                   { Icon: Layers, title: t.kaF3Title, desc: t.kaF3Desc },
                   { Icon: CheckCircle, title: t.kaF4Title, desc: t.kaF4Desc },
                 ].map(({ Icon, title, desc }, i) => (
-                  <div key={i} className="p-8 bg-[#F4F7FA] rounded-[32px] border border-black/5 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                  <div key={i} className="p-8 bg-[#eef3f9] rounded-[32px] border border-slate-900/8 hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                     <Icon className="text-indigo-600 mb-4" size={28} />
-                    <h4 className="font-bold text-lg mb-2 tracking-tight">{title}</h4>
-                    <p className="text-sm text-black/50 font-light leading-relaxed">{desc}</p>
+                    <h4 className="font-bold text-lg mb-2 tracking-tight text-slate-900">{title}</h4>
+                    <p className="text-sm text-slate-700/80 font-light leading-relaxed">{desc}</p>
                   </div>
                 ))}
               </div>
@@ -797,13 +881,12 @@ export default function BilgePortfolio() {
                           initial={{ rotate: rotations[index] }}
                           className="relative w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-[3px] border-white shadow-xl flex-shrink-0 cursor-zoom-in transition-transform duration-300 bg-white"
                         >
-                          <img
+                          <Image
                             src={`/images/klausur${num}.jpg`}
                             alt={`Klausurautomator Interface ${num}`}
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              e.currentTarget.src = 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=800';
-                            }}
+                            fill
+                            sizes="(min-width: 768px) 96px, 80px"
+                            className="object-cover"
                           />
                         </motion.div>
                       );
@@ -817,7 +900,9 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      <section id="projects" className="py-32 bg-[#F4F7FA] relative border-b border-black/5">
+      <section id="projects" className="py-32 relative overflow-hidden bg-[linear-gradient(180deg,rgba(126,140,160,0.16)_0%,rgba(90,104,122,0.2)_40%,rgba(74,88,108,0.24)_100%)] backdrop-blur-[1px]">
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[rgba(126,140,160,0.12)] via-[rgba(126,140,160,0.04)] to-transparent pointer-events-none" />
+        <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-b from-transparent via-[rgba(74,88,108,0.12)] to-[rgba(74,88,108,0.24)] pointer-events-none" />
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex justify-between items-end mb-16">
             <h2 className="text-4xl md:text-6xl font-medium tracking-tight font-tech text-[#111]">{t.githubTitle}</h2>
@@ -869,8 +954,8 @@ export default function BilgePortfolio() {
                   <h3 className="text-3xl font-medium tracking-tight font-tech text-[#111] mb-6">
                     {t.projects[activeProjectIndex].title}
                   </h3>
-                  <p className="text-black/50 font-light italic text-lg leading-relaxed mb-10 flex-1">
-                    "{t.projects[activeProjectIndex].shortDesc}"
+                  <p className="text-[1rem] md:text-[1.08rem] text-black/55 font-light leading-[1.8] mb-10 flex-1 max-w-2xl">
+                    &quot;{t.projects[activeProjectIndex].shortDesc}&quot;
                   </p>
                   
                   <div>
@@ -889,143 +974,233 @@ export default function BilgePortfolio() {
       </section>
 
       <ThesisArchitectureSection t={t} />
+      
+      {/* --- COMMUNITY & IMPACT SECTION (YENİLENMİŞ) --- */}
+      <section id="volunteering" className="py-24 px-6 relative overflow-hidden bg-[linear-gradient(180deg,rgba(32,38,48,0.52)_0%,rgba(34,40,49,0.58)_34%,rgba(32,38,48,0.52)_100%)]">
+        <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:30px_30px]" />
+        {/* Arka plan süslemeleri */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-600/10 rounded-full blur-[120px] -z-10" />
+        <div className="absolute bottom-0 left-0 w-72 h-72 bg-rose-600/10 rounded-full blur-[100px] -z-10" />
 
-      <section id="volunteering" className="py-32 bg-white border-y border-black/5 relative overflow-hidden">
-        <div className="max-w-5xl mx-auto px-6">
-          <Reveal>
-            <div className="text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tight font-tech text-[#111]">{t.volunteeringTitle}</h2>
-              <p className="text-black/40 font-light italic mt-4 text-xl">{t.volunteeringSub}</p>
-            </div>
-          </Reveal>
-
-          <div className="flex flex-wrap justify-center gap-2 md:gap-4 mb-12">
-            {t.volunteering.map((v: any, i: number) => (
-              <button
-                key={i}
-                onClick={() => setActiveVolunteerIndex(i)}
-                className={`px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${
-                  activeVolunteerIndex === i 
-                    ? 'bg-indigo-600 text-white border-indigo-600 shadow-lg shadow-indigo-600/20' 
-                    : 'bg-[#F4F7FA] text-black/40 border-black/5 hover:bg-white hover:border-black/10'
-                }`}
-              >
-                {v.tag}
-              </button>
-            ))}
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col mb-16">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              className="flex items-center gap-2 text-indigo-400 mb-2"
+            >
+              <Users size={18} />
+              <span className="tracking-widest uppercase text-sm">{t.volunteeringTitle}</span>
+            </motion.div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-indigo-200 to-white/50">
+              {t.volunteeringSub}
+            </h2>
           </div>
 
-          <div className="relative min-h-[250px] bg-[#F4F7FA] rounded-[40px] p-10 border border-black/5">
-            <AnimatePresence mode="wait">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+            {t.volunteering.map((item, idx) => (
               <motion.div
-                key={activeVolunteerIndex}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.3 }}
-                className="flex flex-col items-center text-center max-w-2xl mx-auto"
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -10, transition: { duration: 0.2 } }}
+                className="group relative bg-slate-950/88 border border-white/10 p-5 rounded-[28px] backdrop-blur-sm hover:bg-slate-900/95 hover:border-indigo-400/50 hover:shadow-[0_22px_60px_rgba(99,102,241,0.16)] transition-all overflow-hidden"
               >
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-indigo-600 shadow-sm mb-6">
-                  <Heart size={24} />
+                {/* Neon Glow Efekti */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity rounded-2xl" />
+                <div className="absolute top-0 left-6 h-16 w-px bg-gradient-to-b from-indigo-300/90 to-transparent" />
+                
+                <div className="relative z-10">
+                  <div className="flex justify-between items-start mb-4">
+                    <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400 group-hover:scale-110 transition-transform">
+                      <Star size={20} fill="currentColor" />
+                    </div>
+                    <span className="text-[10px] font-label text-white/40 uppercase tracking-[0.18em]">
+                      {item.period}
+                    </span>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold mb-1 text-white group-hover:text-indigo-200 transition-colors">{item.org}</h3>
+                  <p className="text-xs text-indigo-300 font-medium mb-3">{item.role}</p>
+                  <p className="text-sm text-white/78 leading-relaxed mb-4">
+                    {item.desc}
+                  </p>
+                  
+                  <div className="inline-block px-3 py-1 rounded-full bg-white/8 border border-white/12 text-[10px] font-bold text-white/90">
+                    # {item.tag}
+                  </div>
                 </div>
-                <h3 className="text-3xl font-medium mb-2 tracking-tight font-tech text-[#111]">
-                  {t.volunteering[activeVolunteerIndex].org}
-                </h3>
-                <p className="text-indigo-500 font-mono text-[10px] tracking-[0.2em] uppercase mb-6">
-                  {t.volunteering[activeVolunteerIndex].role} • {t.volunteering[activeVolunteerIndex].period}
-                </p>
-                <p className="text-black/60 font-light text-lg leading-relaxed italic">
-                  {t.volunteering[activeVolunteerIndex].desc}
-                </p>
               </motion.div>
-            </AnimatePresence>
+            ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-[#F4F7FA] relative">
-        <div className="max-w-7xl mx-auto px-6">
-          <Reveal>
-            <div className="mb-12 text-center">
-              <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-2 font-tech text-[#111]">{t.hobbiesTitle}</h2>
-              <p className="text-black/40 font-light italic text-base">{t.hobbiesSub}</p>
-            </div>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-            {t.hobbies.map((h: { name: string }, i: number) => (
-              <Reveal key={i}>
-                <div className="group p-5 rounded-[24px] bg-white border border-black/5 hover:shadow-lg hover:border-indigo-100 transition-all duration-300 flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors shrink-0">
-                    {HOBBY_ICON_MAP[h.name] ?? <Zap size={20} />}
-                  </div>
-                  <h3 className="text-base md:text-lg font-medium tracking-tight font-tech text-[#111]">{h.name}</h3>
+      {/* --- PERSONALITY & SKILLS (BEYOND THE CODE + COMMUNICATION STACK BİRLEŞİK) --- */}
+      <section id="personality-stack" className="py-24 px-6 relative overflow-hidden bg-[linear-gradient(180deg,rgba(32,38,48,0.52)_0%,rgba(30,35,44,0.66)_34%,rgba(30,35,44,0.72)_100%)]">
+        <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:30px_30px]" />
+        <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent via-[rgba(30,35,44,0.4)] to-[rgba(30,35,44,0.72)] pointer-events-none" />
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            
+            {/* SOL TARAF: BEYOND THE CODE */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-7 rounded-[32px] border border-white/10 bg-slate-950/88 p-8 shadow-[0_24px_80px_rgba(2,6,23,0.45)]"
+            >
+              <div>
+                <div className="flex items-center gap-2 text-rose-400 mb-2 uppercase text-sm font-label">
+                  <Sparkles size={18} />
+                  <span>{t.hobbiesTitle}</span>
                 </div>
-              </Reveal>
-            ))}
+                <h3 className="text-3xl font-bold mb-4 text-white">{t.hobbiesSub}</h3>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                {t.hobbies.map((hobby, idx) => (
+                  <motion.div
+                    key={idx}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center gap-4 p-4 min-h-[78px] bg-slate-900/85 border border-white/8 rounded-xl hover:border-rose-500/30 hover:bg-rose-950/40 transition-all group"
+                  >
+                    <div className="text-rose-400 group-hover:rotate-12 transition-transform">
+                      {HOBBY_ICON_MAP[hobby.name] || <Heart size={20} />}
+                    </div>
+                    <span className="text-sm font-medium text-white/80 group-hover:text-white">{hobby.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+              
+            </motion.div>
+
+            {/* SAĞ TARAF: COMMUNICATION STACK */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8 rounded-[32px] border border-white/10 bg-slate-950/88 p-8 shadow-[0_24px_80px_rgba(2,6,23,0.45)]"
+            >
+              <div>
+                <div className="flex items-center gap-2 text-cyan-400 mb-2 uppercase text-sm font-label">
+                  <Globe size={18} />
+                  <span>{t.languagesTitle}</span>
+                </div>
+                <h3 className="text-3xl font-tech font-semibold tracking-tight mb-4 text-white">Polyglot Mindset</h3>
+              </div>
+
+              <div className="space-y-4">
+                {t.languages.map((lang, idx) => (
+                  <div key={idx} className="relative p-5 bg-slate-900/85 border border-white/8 rounded-2xl overflow-hidden group">
+                    {/* Progress Background */}
+                    <div 
+                      className={`absolute bottom-0 left-0 h-1 bg-gradient-to-r ${lang.color} ${LANGUAGE_BAR_WIDTH_CLASS_MAP[lang.dots]} opacity-30 group-hover:opacity-100 transition-all`}
+                    />
+                    
+                    <div className="flex justify-between items-center mb-2">
+                      <div>
+                        <h4 className="font-bold text-lg text-white">{lang.name}</h4>
+                        <p className="text-xs text-white/65">{lang.info}</p>
+                      </div>
+                      <div className="text-right">
+                        <span className={`text-xs font-label px-2 py-1 rounded bg-gradient-to-r ${lang.color} text-black`}>
+                          {lang.level}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-1.5 mt-4">
+                      {[...Array(5)].map((_, i) => (
+                        <div 
+                          key={i}
+                          className={`h-1.5 w-full rounded-full transition-all duration-700 ${
+                            i < lang.dots ? `bg-gradient-to-r ${lang.color}` : 'bg-white/10'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
-      <section id="languages" className="py-24 bg-white relative border-y border-black/5">
-        <div className="max-w-7xl mx-auto px-6">
-          <Reveal>
-            <h2 className="text-4xl md:text-5xl font-medium tracking-tight mb-12 font-tech text-[#111] text-center md:text-left">{t.languagesTitle}</h2>
-          </Reveal>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {t.languages.map((langItem: any, i: number) => (
-              <Reveal key={i}>
-                <motion.div whileHover={{ y: -5 }} className="relative group p-6 rounded-[24px] bg-[#F4F7FA] border border-black/5 overflow-hidden transition-all hover:shadow-lg hover:bg-white h-full flex flex-col justify-between">
-                  <div className={`absolute -right-10 -top-10 w-32 h-32 bg-gradient-to-br ${langItem.color} opacity-0 group-hover:opacity-10 blur-3xl transition-opacity duration-500`} />
-                  <div className="relative z-10 mb-6">
-                    <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-black/30 block mb-2">{langItem.level}</span>
-                    <h3 className="text-xl font-medium tracking-tight mb-2 font-tech text-[#111]">{langItem.name}</h3>
-                    <p className="text-xs text-black/40 font-light leading-relaxed opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">{langItem.info}</p>
-                  </div>
-                  <div className="flex gap-1 mt-auto">
-                    {[1, 2, 3, 4, 5].map((dot) => (
-                      <div key={dot} className={`w-1 h-1 rounded-full ${dot <= langItem.dots ? 'bg-indigo-600' : 'bg-black/5'}`} />
-                    ))}
-                  </div>
-                </motion.div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="recommendation" className="py-32 bg-[#0A0A0A] text-white relative border-b border-black/5 overflow-hidden">
+      {/* ... (Footer ve diğer kısımlar buraya gelecek) */}
+      <section id="recommendation" className="py-32 text-white relative overflow-hidden bg-[linear-gradient(180deg,rgba(30,35,44,0.72)_0%,rgba(29,34,42,0.8)_34%,rgba(28,33,41,0.84)_100%)]">
+        <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:30px_30px]" />
+        <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[rgba(30,35,44,0.2)] via-[rgba(30,35,44,0.08)] to-transparent pointer-events-none" />
         <div className="max-w-6xl mx-auto px-6 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
 
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-6">
               <Reveal>
-                <div className="text-indigo-500 mb-8">
-                  <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14.017 21L16.411 14.603C18.805 14.603 21 12.8 21 9C21 5.2 18.195 3 14.603 3C10.798 3 8 5.6 8 10H11.2C11.2 7.8 12.8 6.2 14.603 6.2C16.406 6.2 17.8 7.6 17.8 9C17.8 10.4 16.406 11.4 14.603 11.4H13V14.603L14.017 21ZM4.017 21L6.411 14.603C8.805 14.603 11 12.8 11 9C11 5.2 8.195 3 4.603 3C0.798 3 0 5.6 0 10H3.2C3.2 7.8 4.8 6.2 6.603 6.2C8.406 6.2 9.8 7.6 9.8 9C9.8 10.4 8.406 11.4 6.603 11.4H5V14.603L4.017 21Z" />
-                  </svg>
-                </div>
-                <h2 className="text-2xl md:text-3xl font-light italic leading-relaxed text-white/90 mb-10 font-serif-custom">
-                  "{t.recommendationQuote}"
-                </h2>
-                <div>
-                  <p className="text-white font-tech tracking-tight text-xl">{t.recommendationAuthor}</p>
-                  <p className="text-indigo-400 text-sm font-mono tracking-wider mt-1">{t.recommendationRole}</p>
+                <div className="relative overflow-hidden rounded-[36px] border border-amber-200/30 bg-[#f4ead8] text-slate-900 shadow-[0_26px_90px_rgba(0,0,0,0.28)]">
+                  <div className="absolute inset-0 opacity-[0.18] [background-image:linear-gradient(rgba(120,53,15,0.16)_1px,transparent_1px)] [background-size:100%_34px]" />
+                  <div className="absolute right-8 top-0 h-20 w-20 -translate-y-8 rotate-12 rounded-b-[28px] bg-[#ead8ba] shadow-lg" />
+                  <div className="relative z-10 p-7 md:p-8">
+                    <div className="flex items-center justify-between gap-4 border-b border-amber-900/10 pb-5 mb-8">
+                      <div>
+                        <p className="text-[10px] font-bold uppercase tracking-[0.34em] text-amber-800/70">{t.recommendationNoteLabel}</p>
+                        <p className="mt-2 text-sm text-slate-700/70 font-medium">{t.recommendationTitle}</p>
+                      </div>
+                      <div className="text-right text-[10px] uppercase tracking-[0.24em] text-slate-500/70">
+                        <p>2025</p>
+                      </div>
+                    </div>
+
+                    <div className="text-amber-900/70 mb-6">
+                      <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.017 21L16.411 14.603C18.805 14.603 21 12.8 21 9C21 5.2 18.195 3 14.603 3C10.798 3 8 5.6 8 10H11.2C11.2 7.8 12.8 6.2 14.603 6.2C16.406 6.2 17.8 7.6 17.8 9C17.8 10.4 16.406 11.4 14.603 11.4H13V14.603L14.017 21ZM4.017 21L6.411 14.603C8.805 14.603 11 12.8 11 9C11 5.2 8.195 3 4.603 3C0.798 3 0 5.6 0 10H3.2C3.2 7.8 4.8 6.2 6.603 6.2C8.406 6.2 9.8 7.6 9.8 9C9.8 10.4 8.406 11.4 6.603 11.4H5V14.603L4.017 21Z" />
+                      </svg>
+                    </div>
+
+                    <h2 className="text-[1rem] md:text-[1.18rem] font-light leading-[1.8] text-slate-900/88 mb-8 max-w-xl">
+                      &quot;{t.recommendationQuote}&quot;
+                    </h2>
+
+                    <div className="pt-6 border-t border-amber-900/10">
+                      <p className="text-slate-900 font-tech tracking-tight text-lg">{t.recommendationAuthor}</p>
+                      <p className="text-amber-900/70 text-sm font-label mt-1">{t.recommendationRole}</p>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             </div>
 
-            <div className="lg:col-span-5">
+            <div className="lg:col-span-6">
               <Reveal>
-                <div className="bg-white/5 border border-white/10 rounded-[32px] p-2 backdrop-blur-sm">
-                  {t.recommendationTabs.map((tab: any, i: number) => (
-                    <div key={i}>
+                <div className="rounded-[32px] border border-white/10 bg-slate-950/70 p-4 backdrop-blur-sm shadow-[0_18px_60px_rgba(2,6,23,0.28)]">
+                  <div className="flex items-center justify-between gap-4 px-4 pb-4 pt-2 border-b border-white/10 mb-2">
+                    <div>
+                      <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-indigo-200/75">{t.recommendationPanelLabel}</p>
+                      <p className="mt-2 text-[0.98rem] text-white/64 font-light leading-[1.75]">{t.recommendationHint}</p>
+                    </div>
+                    <div className="h-10 w-10 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-indigo-300">
+                      <ChevronDown size={16} />
+                    </div>
+                  </div>
+                  {t.recommendationTabs.map((tab: RecommendationTab, i: number) => (
+                    <div key={i} className="mb-2 last:mb-0">
                       <button
                         onClick={() => setActiveRecTab(i)}
-                        className={`w-full text-left px-6 py-5 rounded-[24px] transition-all duration-300 flex items-center justify-between ${
-                          activeRecTab === i ? 'bg-indigo-600 text-white shadow-lg' : 'text-white/50 hover:bg-white/5 hover:text-white'
+                        onMouseEnter={() => setHoveredRecTab(i)}
+                        onMouseLeave={() => setHoveredRecTab((current) => (current === i ? null : current))}
+                        className={`w-full text-left px-5 py-5 rounded-[24px] transition-all duration-300 flex items-center justify-between gap-4 ${
+                          activeRecTab === i ? 'bg-indigo-600/90 text-white shadow-lg' : 'text-white/70 bg-white/[0.03] hover:bg-white/8 hover:text-white border border-transparent hover:border-white/10'
                         }`}
                       >
-                        <span className="font-bold uppercase tracking-widest text-[10px]">{tab.label}</span>
+                        <div>
+                          <span className="font-bold uppercase tracking-[0.18em] text-[11px] block">{tab.label}</span>
+                          <span className={`mt-2 block text-sm ${activeRecTab === i ? 'text-white/75' : 'text-white/50'}`}>
+                            {activeRecTab === i ? t.recommendationExpandOpen : t.recommendationExpandClosed}
+                          </span>
+                        </div>
                         {activeRecTab === i ? <ChevronDown size={16} /> : <CheckCircle size={16} className="opacity-50" />}
                       </button>
                       
@@ -1037,7 +1212,23 @@ export default function BilgePortfolio() {
                             exit={{ height: 0, opacity: 0 }}
                             className="overflow-hidden"
                           >
-                            <div className="px-6 py-5 text-white/70 font-light leading-relaxed text-sm">
+                            <div className="px-6 py-5 text-white/80 font-light leading-[1.8] text-[1rem] md:text-[1.05rem]">
+                              {tab.content}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+
+                      <AnimatePresence>
+                        {activeRecTab !== i && hoveredRecTab === i && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -6, height: 0 }}
+                            animate={{ opacity: 1, y: 0, height: 'auto' }}
+                            exit={{ opacity: 0, y: -4, height: 0 }}
+                            transition={{ duration: 0.22, ease: 'easeOut' }}
+                            className="overflow-hidden"
+                          >
+                            <div className="px-5 pb-4 pt-1 text-white/54 text-[0.95rem] font-light leading-[1.75]">
                               {tab.content}
                             </div>
                           </motion.div>
@@ -1053,29 +1244,31 @@ export default function BilgePortfolio() {
         </div>
       </section>
 
-      <footer className="py-32 text-center bg-[#F4F7FA] relative">
+      <footer className="py-32 text-center text-white relative overflow-hidden bg-[linear-gradient(180deg,rgba(28,33,41,0.84)_0%,rgba(27,32,39,0.9)_36%,#272e37_100%)]">
+        <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:30px_30px]" />
         <Reveal>
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="relative z-10">
+            <p className="mb-4 text-sm text-white/58 font-light tracking-[0.02em]">{t.thankYou}</p>
             <p className="text-indigo-600 font-bold mb-4 uppercase tracking-[0.3em] text-[10px]">{t.cta}</p>
             <motion.h2
-              className="text-2xl md:text-5xl font-medium tracking-tight mb-12 italic font-tech text-[#111] hover:text-indigo-600 transition-colors cursor-pointer"
+              className="text-2xl md:text-5xl font-medium tracking-tight mb-12 italic font-tech text-white hover:text-indigo-300 transition-colors cursor-pointer"
               whileHover={{ y: -8 }}
               transition={{ type: 'spring', stiffness: 200, damping: 20 }}
             >
               sonmezbilge@gmail.com
             </motion.h2>
             <motion.div className="flex justify-center gap-10 mb-20" whileHover={{ opacity: 1 }} initial={{ opacity: 0.4 }} transition={{ duration: 0.3 }}>
-              <motion.a href="https://linkedin.com/in/bilge-sonmez/" target="_blank" rel="noopener noreferrer" className="text-[#111]" whileHover={{ scale: 1.25 }} whileTap={{ scale: 0.95 }}>
+              <motion.a href="https://linkedin.com/in/bilge-sonmez/" target="_blank" rel="noopener noreferrer" className="text-white" whileHover={{ scale: 1.25 }} whileTap={{ scale: 0.95 }}>
                 <Linkedin size={28} />
               </motion.a>
-              <motion.a href="https://github.com/bsoenmez3" target="_blank" rel="noopener noreferrer" className="text-[#111]" whileHover={{ scale: 1.25 }} whileTap={{ scale: 0.95 }}>
+              <motion.a href="https://github.com/bsoenmez3" target="_blank" rel="noopener noreferrer" className="text-white" whileHover={{ scale: 1.25 }} whileTap={{ scale: 0.95 }}>
                 <Github size={28} />
               </motion.a>
-              <motion.a href="mailto:sonmezbilge@gmail.com" className="text-[#111]" whileHover={{ scale: 1.25 }} whileTap={{ scale: 0.95 }}>
+              <motion.a href="mailto:sonmezbilge@gmail.com" className="text-white" whileHover={{ scale: 1.25 }} whileTap={{ scale: 0.95 }}>
                 <Mail size={28} />
               </motion.a>
             </motion.div>
-            <motion.p className="text-[10px] font-bold tracking-[0.6em] text-black/20 uppercase" initial={{ opacity: 0 }} whileInView={{ opacity: 0.5 }} transition={{ delay: 0.3 }}>
+            <motion.p className="text-[10px] font-bold tracking-[0.6em] text-white/30 uppercase" initial={{ opacity: 0 }} whileInView={{ opacity: 0.5 }} transition={{ delay: 0.3 }}>
               {t.footer}
             </motion.p>
           </motion.div>
@@ -1108,7 +1301,7 @@ export default function BilgePortfolio() {
               <div className="text-indigo-600 mb-6">{PROJECT_ICON_MAP[activeProject.id]}</div>
               <h2 className="text-4xl font-medium tracking-tight mb-2 font-tech text-[#111]">{activeProject.title}</h2>
               <p className="text-indigo-600 font-bold text-[10px] uppercase tracking-widest mb-8">{activeProject.tech}</p>
-              <p className="text-lg text-black/60 font-light leading-relaxed mb-10 italic">{activeProject.fullDesc}</p>
+              <p className="text-[1rem] md:text-[1.08rem] text-black/60 font-light leading-[1.8] mb-10 max-w-2xl">{activeProject.fullDesc}</p>
               <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-black/40 mb-6">{t.highlightsTitle}</h3>
               <ul className="space-y-4 mb-12">
                 {activeProject.highlights.map((item: string, i: number) => (
@@ -1155,16 +1348,13 @@ function WaveSection({ img, title, year, desc, extras }: {
       <div className="flex-1 space-y-5">
         {year && <span className="text-indigo-600 font-mono text-xs tracking-[0.2em] uppercase">{year}</span>}
         <h3 className="text-4xl md:text-5xl font-medium tracking-tight leading-none font-tech text-[#111]">{title}</h3>
-        <div className="text-black/50 font-light italic text-xl leading-relaxed space-y-2">{desc}</div>
+        <div className="text-black/55 font-light text-[1rem] md:text-[1.08rem] leading-[1.8] space-y-2">{desc}</div>
         {extras && (
-          <div className="space-y-3 mt-4">
+          <div className="space-y-3 mt-5">
             {(Array.isArray(extras) ? extras : [extras]).map((e, i) => (
-              <div key={i} className="inline-block px-5 py-3 bg-indigo-50/50 border border-indigo-100 rounded-2xl">
-                <p className="text-indigo-900/70 font-medium text-sm leading-relaxed flex items-start gap-2">
-                  <Layers size={16} className="mt-0.5 shrink-0 opacity-50" />
-                  {e}
-                </p>
-              </div>
+              <p key={i} className="text-black/55 font-light text-[1rem] md:text-[1.08rem] leading-[1.8] max-w-xl">
+                {e}
+              </p>
             ))}
           </div>
         )}
@@ -1173,16 +1363,8 @@ function WaveSection({ img, title, year, desc, extras }: {
   );
 }
 
-function ThesisArchitectureSection({ t }: { t: any }) {
-  const [activeFeature, setActiveFeature] = useState(0);
+function ThesisArchitectureSection({ t }: { t: PortfolioContent }) {
   const [isZoomed, setIsZoomed] = useState(false);
-
-  const features = [
-    { icon: <Database size={20} />, title: t.thesisF1Title, desc: t.thesisF1Desc },
-    { icon: <Shield size={20} />, title: t.thesisF2Title, desc: t.thesisF2Desc },
-    { icon: <Network size={20} />, title: t.thesisF3Title, desc: t.thesisF3Desc },
-    { icon: <Binary size={20} />, title: t.thesisF4Title, desc: t.thesisF4Desc },
-  ];
 
   const isDe = t.eduTitle === 'Akademischer Hintergrund';
   const zoomHintText = isDe 
@@ -1190,18 +1372,21 @@ function ThesisArchitectureSection({ t }: { t: any }) {
     : "Click to view the architecture blueprint of my Java implementation extending the evidence-core library.";
 
   return (
-    <section className="py-32 bg-[#F4F7FA] border-b border-black/5 relative overflow-hidden">
+    <section className="py-32 bg-[linear-gradient(180deg,rgba(74,88,108,0.24)_0%,rgba(48,58,73,0.42)_34%,rgba(32,38,48,0.52)_100%)] relative overflow-hidden backdrop-blur-[1px]">
+      <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(rgba(255,255,255,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] [background-size:30px_30px] pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-40 bg-[radial-gradient(circle_at_top,rgba(96,165,250,0.14),transparent_60%)] pointer-events-none" />
+      <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-b from-transparent via-[rgba(32,38,48,0.12)] to-[rgba(32,38,48,0.52)] pointer-events-none" />
       <div className="max-w-7xl mx-auto px-6 relative">
 
         <div className="mb-16 md:mb-20 pt-10">
           <Reveal>
-            <span className="text-indigo-600 font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block italic">
+            <span className="text-indigo-200 font-bold tracking-[0.4em] text-[10px] uppercase mb-4 block italic">
               {t.thesisSectionHighlight}
             </span>
-            <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-6 uppercase leading-none font-tech text-[#111] max-w-3xl">
+            <h2 className="text-3xl md:text-5xl font-medium tracking-tight mb-6 uppercase leading-none font-tech text-white max-w-3xl">
               {t.thesisSectionTitle}
             </h2>
-            <p className="text-base md:text-lg text-black/50 font-light italic max-w-3xl leading-relaxed">
+            <p className="text-[1rem] md:text-[1.08rem] text-white/82 font-light max-w-3xl leading-[1.8]">
               {t.thesisSectionDesc}
             </p>
           </Reveal>
@@ -1213,15 +1398,14 @@ function ThesisArchitectureSection({ t }: { t: any }) {
             <Reveal>
               <div 
                 onClick={() => setIsZoomed(true)}
-                className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#E8EEF5] rounded-[32px] border border-black/5 shadow-xl overflow-hidden cursor-zoom-in group"
+                className="relative w-full aspect-[4/3] md:aspect-[16/10] bg-[#dfe8f3] rounded-[32px] border border-white/10 shadow-xl overflow-hidden cursor-zoom-in group"
               >
-                <div className="blueprint-grid absolute inset-0 opacity-[0.04] pointer-events-none" />
-                
-                <img 
-                  src="/images/architecture.jpg" 
-                  alt="Architecture Blueprint" 
-                  className="absolute inset-0 w-full h-full object-cover md:object-contain p-4 md:p-8 pb-24 md:pb-28 group-hover:scale-105 transition-transform duration-700 ease-out" 
-                  onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000'; }} 
+                <Image
+                  src="/images/architecture.jpg"
+                  alt="Architecture Diagram"
+                  fill
+                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  className="object-cover md:object-contain p-4 md:p-8 pb-24 md:pb-28 group-hover:scale-[1.02] transition-transform duration-700 ease-out"
                 />
 
                 <div className="absolute bottom-4 left-4 right-4 bg-black/90 backdrop-blur-xl border border-white/10 rounded-[20px] p-4 flex items-center gap-4 text-white shadow-2xl transition-all duration-300 group-hover:bg-black group-hover:translate-y-[-4px]">
@@ -1236,60 +1420,32 @@ function ThesisArchitectureSection({ t }: { t: any }) {
             </Reveal>
           </div>
 
-          <div className="lg:col-span-5 w-full space-y-3">
+          <div className="lg:col-span-5 w-full">
             <Reveal>
-              <div className="flex items-center gap-3 mb-6 px-2">
-                <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-black/40">
-                  Core Components
-                </span>
+              <div className="rounded-[28px] border border-white/10 bg-slate-950/72 px-6 py-7 shadow-lg shadow-black/10">
+                <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-indigo-200/65 mb-4">
+                  Thesis Focus
+                </p>
+                <div className="space-y-5">
+                  <div>
+                    <h4 className="font-bold tracking-tight font-tech text-white mb-2">{t.thesisF1Title}</h4>
+                    <p className="text-white/72 font-light leading-[1.75] text-[0.98rem]">{t.thesisF1Desc}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold tracking-tight font-tech text-white mb-2">{t.thesisF2Title}</h4>
+                    <p className="text-white/72 font-light leading-[1.75] text-[0.98rem]">{t.thesisF2Desc}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold tracking-tight font-tech text-white mb-2">{t.thesisF3Title}</h4>
+                    <p className="text-white/72 font-light leading-[1.75] text-[0.98rem]">{t.thesisF3Desc}</p>
+                  </div>
+                  <div>
+                    <h4 className="font-bold tracking-tight font-tech text-white mb-2">{t.thesisF4Title}</h4>
+                    <p className="text-white/72 font-light leading-[1.75] text-[0.98rem]">{t.thesisF4Desc}</p>
+                  </div>
+                </div>
               </div>
             </Reveal>
-
-            {features.map((feature, i) => (
-              <Reveal key={i}>
-                <div 
-                  className={`border rounded-[24px] overflow-hidden transition-all duration-500 ${
-                    activeFeature === i 
-                      ? 'bg-white border-indigo-200 shadow-lg' 
-                      : 'bg-transparent border-black/5 hover:border-black/10 hover:bg-white/50'
-                  }`}
-                >
-                  <button
-                    onClick={() => setActiveFeature(activeFeature === i ? -1 : i)}
-                    className="w-full px-6 py-5 flex items-center justify-between text-left"
-                  >
-                    <div className="flex items-center gap-4">
-                      <div className={`p-2 rounded-xl transition-colors duration-300 ${activeFeature === i ? 'bg-indigo-50 text-indigo-600' : 'text-black/40'}`}>
-                        {feature.icon}
-                      </div>
-                      <h4 className={`font-bold tracking-tight font-tech transition-colors duration-300 ${activeFeature === i ? 'text-indigo-600' : 'text-[#111]'}`}>
-                        {feature.title}
-                      </h4>
-                    </div>
-                    <ChevronDown size={18} className={`transition-transform duration-500 ${activeFeature === i ? '-rotate-180 text-indigo-600' : 'text-black/20'}`} />
-                  </button>
-                  
-                  <AnimatePresence>
-                    {activeFeature === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <div className="px-6 pb-6 pt-2">
-                          <div className="h-px w-full bg-black/5 mb-4" />
-                          <p className="text-black/60 font-light leading-relaxed text-sm italic">
-                            {feature.desc}
-                          </p>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
 
@@ -1315,7 +1471,7 @@ function ThesisArchitectureSection({ t }: { t: any }) {
                 animate={{ scale: 1 }}
                 exit={{ scale: 0.9 }}
                 src="/images/architecture.jpg"
-                alt="Architecture Blueprint Zoomed"
+                alt="Architecture Diagram Zoomed"
                 className="w-full max-w-6xl max-h-[90vh] object-contain rounded-2xl shadow-2xl"
                 onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2000'; }}
               />
