@@ -193,20 +193,7 @@ const content = {
       { id: "leadership", label: "Leadership", content: "Demonstrated strong leadership potential, suited for Product Owner & Technical Product Manager roles." }
     ],
 
-    experiences: [
-      {
-        company: 'Fraunhofer IOSB',
-        role: 'Full-Stack Developer (Student Assistant)',
-        period: 'Jan 2026 – Present',
-        tech: 'Python · Django · TypeScript · Docker · REST APIs',
-        image: '/images/fraunhofer.jpg',
-        tasks: [
-          'Contribute to the backend and frontend development of a Deep Learning annotation platform for processing video-based safety data.',
-          'Design and implement RESTful APIs and Django-based services that connect annotation workflows, data pipelines, and user-facing interfaces.',
-          'Contribute ideas for technical improvements and new platform features to strengthen the system architecture, usability, and long-term maintainability.',
-        ],
-        takeaway: 'Strengthening my ability to turn research-oriented machine learning workflows into robust, production-ready full-stack systems.',
-      },
+experiences: [ { company: 'SAP SE', role: 'Working Student — Data Analyst, Global Technology Legal Compliance', period: 'Jul 2026 – Present', tech: 'Data Analysis · IP Scan · AI Assistant · Reporting', image: '/images/sap.jpg', tasks: [ 'Conduct IP Scans to support intellectual property analysis and Global Technology Legal Compliance workflows.', 'Contribute to the development of iPilot, an AI assistant designed to support the GTLC team.', 'Support reporting activities by helping prepare, organize, and analyze data for team reporting needs.', ], takeaway: 'Combining data analysis, AI-assisted workflow development, and reporting to support technology legal compliance processes.', }, { company: 'Fraunhofer IOSB', role: 'Full-Stack Developer (Student Assistant)', period: 'Jan 2026 – Jul 2026', tech: 'Python · Django · TypeScript · Docker · REST APIs', image: '/images/fraunhofer.jpg', tasks: [ 'Contributed to the backend and frontend development of a Deep Learning annotation platform for processing video-based safety data.', 'Designed and implemented RESTful APIs and Django-based services connecting annotation workflows, data pipelines, and user-facing interfaces.', 'Contributed technical improvements and new platform features to strengthen system architecture, usability, and long-term maintainability.', ], takeaway: 'Strengthened my ability to translate research-oriented machine learning workflows into robust, production-ready full-stack systems.', }, 
       {
         company: '1&1 Mail & Media',
         role: 'Working Student',
@@ -415,20 +402,7 @@ const content = {
       { id: "leadership", label: "Führung", content: "Zeigte starkes Führungspotenzial, hervorragend geeignet für Product Owner & Technical Product Manager Rollen." }
     ],
 
-    experiences: [
-      {
-        company: 'Fraunhofer IOSB',
-        role: 'Full-Stack Developer (HiWi)',
-        period: 'Jan 2026 – Heute',
-        tech: 'Python · Django · TypeScript · Docker · REST APIs',
-        image: '/images/fraunhofer.jpg',
-        tasks: [
-          'Mitarbeit an der Backend- und Frontend-Entwicklung einer Deep-Learning-Annotationsplattform zur Verarbeitung videobasierter Sicherheitsdaten.',
-          'Konzeption und Implementierung von RESTful APIs sowie Django-basierten Services zur Verbindung von Annotations-Workflows, Datenpipelines und Benutzeroberflächen.',
-          'Einbringen technischer Verbesserungsvorschläge und neuer Funktionen, um Architektur, Usability und langfristige Wartbarkeit des Systems gezielt weiterzuentwickeln.',
-        ],
-        takeaway: 'Ich vertiefe meine Fähigkeit, forschungsnahe Machine-Learning-Workflows in robuste, produktionsreife Full-Stack-Systeme zu überführen.',
-      },
+   experiences: [ { company: 'SAP SE', role: 'Werkstudentin – Data Analyst, Global Technology Legal Compliance', period: 'Jul 2026 – Heute', tech: 'Datenanalyse · IP Scan · KI-Assistent · Reporting', image: '/images/sap.jpg', tasks: [ 'Durchführung von IP Scans zur Unterstützung der Analyse geistigen Eigentums und der Compliance-Prozesse im Global Technology Legal Compliance Team.', 'Mitwirkung an der Entwicklung von iPilot, einem KI-Assistenten zur Unterstützung der Arbeitsabläufe des GTLC-Teams.', 'Unterstützung bei Reporting-Aufgaben, insbesondere bei der Aufbereitung, Strukturierung und Analyse von Daten für die Berichterstattung des Teams.', ], takeaway: 'Verbindung von Datenanalyse, KI-gestützter Workflow-Entwicklung und Reporting zur Unterstützung technologiebezogener Legal-Compliance-Prozesse.', }, { company: 'Fraunhofer IOSB', role: 'Full-Stack Developer (HiWi)', period: 'Jan 2026 – Jul 2026', tech: 'Python · Django · TypeScript · Docker · REST APIs', image: '/images/fraunhofer.jpg', tasks: [ 'Mitarbeit an der Backend- und Frontend-Entwicklung einer Deep-Learning-Annotationsplattform zur Verarbeitung videobasierter Sicherheitsdaten.', 'Konzeption und Implementierung von RESTful APIs und Django-basierten Services zur Verbindung von Annotations-Workflows, Datenpipelines und Benutzeroberflächen.', 'Mitwirkung an technischen Verbesserungen und neuen Plattformfunktionen zur Weiterentwicklung der Systemarchitektur, Benutzerfreundlichkeit und langfristigen Wartbarkeit.', ], takeaway: 'Vertiefung meiner Fähigkeit, forschungsnahe Machine-Learning-Workflows in robuste, produktionsreife Full-Stack-Systeme zu überführen.', }, 
       {
         company: '1&1 Mail & Media',
         role: 'Werkstudentin',
